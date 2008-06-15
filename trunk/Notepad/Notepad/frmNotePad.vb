@@ -47,4 +47,28 @@ Public Class frmNotepad
 
 #End Region
 
+    Private Sub mnuFm_Word_Wrap_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuFm_Word_Wrap.Click
+        Try
+            rtxtEditor.WordWrap = mnuFm_Word_Wrap.CheckState = CheckState.Checked
+            'Check/Uncheck
+            mnuFm_Word_Wrap.CheckState = (mnuFm_Word_Wrap.CheckState + 1) Mod 2
+            'Khong xet la co thay doi noi dung
+            b_EditorChange = False
+        Catch ex As Exception
+            'Khong can quan ly loi
+        End Try
+        
+    End Sub
+
+    Private Sub mnuV_Status_Bar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuV_Status_Bar.Click
+        Try
+            statusbar.Visible = mnuV_Status_Bar.CheckState = CheckState.Checked
+            'Check/Uncheck
+            mnuV_Status_Bar.CheckState = (mnuV_Status_Bar.CheckState + 1) Mod 2
+            'Khong xet la co thay doi noi dung
+            b_EditorChange = False
+        Catch ex As Exception
+            'Khong can quan ly loi
+        End Try
+    End Sub
 End Class
