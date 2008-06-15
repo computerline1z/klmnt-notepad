@@ -56,7 +56,9 @@ Partial Class frmNotepad
         Me.mnuH_About_Notepad = New System.Windows.Forms.ToolStripMenuItem
         Me.rtxtEditor = New System.Windows.Forms.RichTextBox
         Me.statusbar = New System.Windows.Forms.StatusStrip
-        Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel
+        Me.statusbar1 = New System.Windows.Forms.ToolStripStatusLabel
+        Me.statusbar2 = New System.Windows.Forms.ToolStripStatusLabel
+        Me.statusbar3 = New System.Windows.Forms.ToolStripStatusLabel
         Me.MenuStrip1.SuspendLayout()
         Me.statusbar.SuspendLayout()
         Me.SuspendLayout()
@@ -264,7 +266,7 @@ Partial Class frmNotepad
         'mnuV_Status_Bar
         '
         Me.mnuV_Status_Bar.Name = "mnuV_Status_Bar"
-        Me.mnuV_Status_Bar.Size = New System.Drawing.Size(152, 24)
+        Me.mnuV_Status_Bar.Size = New System.Drawing.Size(144, 24)
         Me.mnuV_Status_Bar.Text = "&Status Bar"
         '
         'mnuHelp
@@ -300,18 +302,35 @@ Partial Class frmNotepad
         '
         'statusbar
         '
-        Me.statusbar.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripStatusLabel1})
+        Me.statusbar.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.statusbar1, Me.statusbar2, Me.statusbar3})
         Me.statusbar.Location = New System.Drawing.Point(0, 433)
         Me.statusbar.Name = "statusbar"
         Me.statusbar.Size = New System.Drawing.Size(696, 25)
+        Me.statusbar.SizingGrip = False
         Me.statusbar.TabIndex = 3
-        Me.statusbar.Text = "StatusStrip1"
         '
-        'ToolStripStatusLabel1
+        'statusbar1
         '
-        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
-        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(154, 20)
-        Me.ToolStripStatusLabel1.Text = "ToolStripStatusLabel1"
+        Me.statusbar1.Name = "statusbar1"
+        Me.statusbar1.Size = New System.Drawing.Size(567, 20)
+        Me.statusbar1.Spring = True
+        Me.statusbar1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'statusbar2
+        '
+        Me.statusbar2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.statusbar2.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.statusbar2.Name = "statusbar2"
+        Me.statusbar2.Size = New System.Drawing.Size(77, 20)
+        Me.statusbar2.Text = "Ln 1, Col 1"
+        Me.statusbar2.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'statusbar3
+        '
+        Me.statusbar3.Name = "statusbar3"
+        Me.statusbar3.Size = New System.Drawing.Size(37, 20)
+        Me.statusbar3.Text = "       "
+        Me.statusbar3.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
         'frmNotepad
         '
@@ -370,6 +389,8 @@ Partial Class frmNotepad
     Friend WithEvents mnuH_About_Notepad As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents rtxtEditor As System.Windows.Forms.RichTextBox
     Friend WithEvents statusbar As System.Windows.Forms.StatusStrip
-    Friend WithEvents ToolStripStatusLabel1 As System.Windows.Forms.ToolStripStatusLabel
+    Friend WithEvents statusbar1 As System.Windows.Forms.ToolStripStatusLabel
+    Friend WithEvents statusbar2 As System.Windows.Forms.ToolStripStatusLabel
+    Friend WithEvents statusbar3 As System.Windows.Forms.ToolStripStatusLabel
 
 End Class
