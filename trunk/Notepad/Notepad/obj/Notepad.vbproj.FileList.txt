@@ -1,0 +1,10 @@
+obj\Debug\ResolveAssemblyReference.cache
+bin\Debug\Notepad.exe
+bin\Debug\Notepad.pdb
+bin\Debug\Notepad.xml
+obj\Debug\Notepad.frmNotepad.resources
+obj\Debug\Notepad.Resources.resources
+obj\Debug\Notepad.vbproj.GenerateResource.Cache
+obj\Debug\Notepad.exe
+obj\Debug\Notepad.xml
+obj\Debug\Notepad.pdb
