@@ -1,3 +1,5 @@
+Imports System.IO
+
 Public Class frmNotepad
     Dim s_filename As String
 #Region "Cac su kien tren form"
@@ -68,6 +70,31 @@ Public Class frmNotepad
 
     Private Sub mnuF_Open_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuF_Open.Click
         'Code Open
+        Try
+            Dim frmOpen As New OpenFileDialog
+            'Set cac thuoc tinh
+            frmOpen.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*"
+            frmOpen.FilterIndex = 1
+            frmOpen.RestoreDirectory = True
+            frmOpen.SupportMultiDottedExtensions = True
+
+            If frmOpen.ShowDialog() = Windows.Forms.DialogResult.OK Then
+                Dim myStream As Stream
+                'Mo file
+                myStream = frmOpen.OpenFile()
+                If Not (myStream Is Nothing) Then
+                    'Dua noi dung vao
+                    rtxtEditor.Text = myStream.ToString
+                End If
+                'Dong file
+                myStream.Close()
+
+            End If
+
+        Catch ex As Exception
+            'Quan ly loi
+            MsgBox(ex.Message)
+        End Try
 
     End Sub
 
