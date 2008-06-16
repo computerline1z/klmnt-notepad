@@ -73,22 +73,24 @@ Public Class frmNotepad
         Try
             Dim frmOpen As New OpenFileDialog
             'Set cac thuoc tinh
-            frmOpen.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*"
+            frmOpen.Filter = "Text Documents (*.txt)|*.txt|All files (*.*)|*.*"
             frmOpen.FilterIndex = 1
             frmOpen.RestoreDirectory = True
             frmOpen.SupportMultiDottedExtensions = True
 
             If frmOpen.ShowDialog() = Windows.Forms.DialogResult.OK Then
-                Dim myStream As Stream
-                'Mo file
-                myStream = frmOpen.OpenFile()
-                If Not (myStream Is Nothing) Then
-                    'Dua noi dung vao
-                    rtxtEditor.Text = myStream.ToString
-                End If
+                Dim s_filename As String
+                s_filename = frmOpen.FileName
+                Dim myStream As New StreamReader(s_filename)
+
+                'Dua noi dung vao
+                rtxtEditor.Text = myStream.ReadToEnd
+                'Luu file da mo
+                rtxtEditor.Tag = s_filename
+                'Gan lai title cua form
+                Me.Text = s_filename.Substring(s_filename.LastIndexOf("\") + 1) & " - " & Application.ProductName
                 'Dong file
                 myStream.Close()
-
             End If
 
         Catch ex As Exception
@@ -100,11 +102,22 @@ Public Class frmNotepad
 
     Private Sub mnuF_Save_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuF_Save.Click
         'Code Save
+        Try
+            'Neu chua save lan nao thi cung chinh la Save as
+            If rtxtEditor.Tag Is Nothing Then
+                mnuF_Save_as_Click(sender, e)
+            Else
+                SaveToFile(rtxtEditor.Tag)
+            End If
 
+        Catch ex As Exception
+            'Quan ly loi
+            MsgBox(ex.Message)
+        End Try
     End Sub
 
     Private Sub mnuF_Save_as_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuF_Save_as.Click
-        'Code Save As
+        'Code Save As        
 
     End Sub
 
@@ -329,7 +342,20 @@ Public Class frmNotepad
 #End Region
 #End Region
 #Region "Cac ham xu ly"
-
+    Private Sub SaveToFile(ByVal s_filename As String)
+        Try
+            Dim myStream As New StreamWriter(s_filename)
+            'Ghi file
+            myStream.Write(rtxtEditor.Text)
+            'Dong file
+            myStream.Close()
+            rtxtEditor.Tag = s_filename
+            Me.Text = s_filename.Substring(s_filename.LastIndexOf("\") + 1) & " - " & Application.ProductName
+        Catch ex As Exception
+            'Quan ly loi
+            MsgBox(ex.Message)
+        End Try
+    End Sub
 #End Region
 
 End Class
