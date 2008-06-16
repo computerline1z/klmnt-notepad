@@ -1,7 +1,6 @@
 Imports System.IO
 
 Public Class frmNotepad
-    Dim s_filename As String
 #Region "Cac su kien tren form"
     Private Sub frmNotepad_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         'Khoi tao cac bien
@@ -42,6 +41,13 @@ Public Class frmNotepad
             If rtxtEditor.Modified Then
                 Dim s_msg As String
                 Dim i_ans As Integer
+                Dim s_filename As String
+                If rtxtEditor.Tag Is Nothing Then
+                    s_filename = "Untitled"
+                Else
+                    s_filename = rtxtEditor.Tag.Substring(rtxtEditor.Tag.LastIndexOf("\") + 1).Trim
+                End If
+
                 s_msg = "The text in the " & s_filename & " file has changed." & Chr(13) & Chr(13) & _
                         "Do you want to save the changes?"
 
@@ -55,12 +61,13 @@ Public Class frmNotepad
                         e.Cancel = False
                         '(Xu ly luu 
                         'Code 
+                        mnuF_Save_Click(sender, e)
                         ')
                 End Select
             End If
         Catch ex As Exception
             'Quan ly loi khi ket thuc chuong trinh
-
+            MsgBox(ex.Message)
         End Try
     End Sub
 #Region "File"
@@ -118,7 +125,30 @@ Public Class frmNotepad
 
     Private Sub mnuF_Save_as_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuF_Save_as.Click
         'Code Save As        
+        Try
+            Dim frmSave As New SaveFileDialog
+            'Set cac thuoc tinh
+            frmSave.Filter = "Text Documents (*.txt)|*.txt|All files (*.*)|*.*"
+            frmSave.FilterIndex = 1
+            If rtxtEditor.Tag Is Nothing Then
+                frmSave.FileName = "*.txt"
+            Else
+                Dim s_filename As String
+                s_filename = rtxtEditor.Tag
+                frmSave.FileName = s_filename.Substring(s_filename.LastIndexOf("\") + 1)
+            End If
 
+            frmSave.OverwritePrompt = True
+            frmSave.RestoreDirectory = True
+            frmSave.SupportMultiDottedExtensions = True
+
+            If frmSave.ShowDialog() = Windows.Forms.DialogResult.OK Then
+                SaveToFile(frmSave.FileName)
+            End If
+        Catch ex As Exception
+            'Quan ly loi
+            MsgBox(ex.Message)
+        End Try
     End Sub
 
     Private Sub mnuF_Page_setup_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuF_Page_setup.Click
@@ -349,8 +379,13 @@ Public Class frmNotepad
             myStream.Write(rtxtEditor.Text)
             'Dong file
             myStream.Close()
+            'Luu lai ten file
             rtxtEditor.Tag = s_filename
+            'Gan lai Modified Luu roi thi khong hoi la co luu khi thoat khong
+            rtxtEditor.Modified = False
+            'Doi title cua form
             Me.Text = s_filename.Substring(s_filename.LastIndexOf("\") + 1) & " - " & Application.ProductName
+
         Catch ex As Exception
             'Quan ly loi
             MsgBox(ex.Message)
