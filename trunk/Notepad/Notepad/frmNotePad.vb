@@ -1,7 +1,18 @@
 Imports System.IO
 
 Public Class frmNotepad
+#Region "Hieu ung bong mo"
+    Const CS_DROPSHADOW = &H20000
+    Protected Overrides ReadOnly Property CreateParams() As System.Windows.Forms.CreateParams
+        Get
+            Dim parameters As CreateParams = MyBase.CreateParams
+            parameters.ClassStyle = parameters.ClassStyle Or CS_DROPSHADOW
+            Return parameters
+        End Get
+    End Property
+#End Region
 #Region "Cac su kien tren form"
+
     Private Sub frmNotepad_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         'Khoi tao cac bien
 
@@ -27,8 +38,13 @@ Public Class frmNotepad
             mnuE_Copy.Enabled = b_isSelectText
             mnuE_Cut.Enabled = b_isSelectText
             mnuE_Delete.Enabled = b_isSelectText
-            mnuE_Find.Enabled = b_isSelectText
-            mnuE_Find_Next.Enabled = b_isSelectText
+
+            mnuE_Find.Enabled = rtxtEditor.TextLength > 0
+            mnuE_Find_Next.Enabled = rtxtEditor.TextLength > 0
+
+            mnuE_Replace.Enabled = rtxtEditor.TextLength > 0
+
+            mnuE_Go_to.Enabled = rtxtEditor.WordWrap
 
             mnuV_Status_Bar.Enabled = mnuFm_Word_Wrap.CheckState = CheckState.Unchecked
         Catch ex As Exception
@@ -65,6 +81,7 @@ Public Class frmNotepad
                         ')
                 End Select
             End If
+            coolCloseForm(Me, 20)
         Catch ex As Exception
             'Quan ly loi khi ket thuc chuong trinh
             MsgBox(ex.Message)
@@ -180,7 +197,7 @@ Public Class frmNotepad
 
     Private Sub mnuF_Exit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuF_Exit.Click
         'Code Exit 
-        End
+        Me.Close()
     End Sub
 #End Region
 #Region "Edit"
@@ -211,7 +228,6 @@ Public Class frmNotepad
 
     Private Sub mnuE_Find_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Find.Click
         'Code Find
-
     End Sub
     Private Sub mnuE_Find_Next_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Find_Next.Click
         'Code Find Next
@@ -391,6 +407,35 @@ Public Class frmNotepad
             MsgBox(ex.Message)
         End Try
     End Sub
-#End Region
+    Public Sub coolCloseForm(ByVal closeForm As Form, ByVal speed As Integer)
 
+        If speed = 0 Then
+            MsgBox("Speed cannot zero")
+            Exit Sub
+        End If
+
+        On Error Resume Next
+        'closeForm.Scale = 1
+        closeForm.WindowState = 0
+        Dim oldval As Integer
+        oldval = closeForm.Height + 1
+        Do Until closeForm.Height > oldval Or closeForm.Height < 50
+            oldval = closeForm.Height
+            Application.DoEvents()
+            'closeForm.Opacity = closeForm.Opacity / 2.5
+            closeForm.Height = closeForm.Height - speed * 8
+            closeForm.Top = closeForm.Top + speed * 4
+
+        Loop
+        oldval = closeForm.Width + 1
+        Do Until closeForm.Width > oldval Or closeForm.Width < 120
+            Application.DoEvents()
+            oldval = closeForm.Width
+            closeForm.Width = closeForm.Width - speed * 8
+            closeForm.Left = closeForm.Left + speed * 4
+        Loop
+        closeForm.Dispose()
+    End Sub
+
+#End Region
 End Class
