@@ -1,28 +1,43 @@
 Public Class frmNotepad
-    Dim b_EditorChange As Boolean
     Dim s_filename As String
 #Region "Cac su kien tren form"
     Private Sub frmNotepad_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         'Khoi tao cac bien
-        b_EditorChange = False
 
         'Khoi tao cac trang thai cua control
+        mnuFm_Word_Wrap.CheckState = CheckState.Unchecked
+        mnuV_Status_Bar.CheckState = CheckState.Checked
+
         rtxtEditor.WordWrap = mnuFm_Word_Wrap.CheckState = CheckState.Checked
         statusbar.Visible = mnuV_Status_Bar.CheckState = CheckState.Checked
-    End Sub
 
-    Private Sub mnuF_Exit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuF_Exit.Click
-        End
     End Sub
 
     Private Sub rtxtEditor_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rtxtEditor.TextChanged
-        b_EditorChange = True
+
     End Sub
 
+    Private Sub mainMenu_MenuActivate(ByVal sender As Object, ByVal e As System.EventArgs) Handles mainMenu.MenuActivate
+        Try
+            Dim b_isSelectText As Boolean
+            'Xet xem co chon text nao hay khong
+            b_isSelectText = rtxtEditor.SelectionLength > 0
+            'Neu khong chon thi Disable cac menu Cut,Copy,Delete ... va nguoc lai
+            mnuE_Copy.Enabled = b_isSelectText
+            mnuE_Cut.Enabled = b_isSelectText
+            mnuE_Delete.Enabled = b_isSelectText
+            mnuE_Find.Enabled = b_isSelectText
+            mnuE_Find_Next.Enabled = b_isSelectText
+
+            mnuV_Status_Bar.Enabled = mnuFm_Word_Wrap.CheckState = CheckState.Unchecked
+        Catch ex As Exception
+            'Khong can quan ly loi
+        End Try
+    End Sub
     Private Sub frmNotepad_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
         Try
             'Kiem tra luu
-            If b_EditorChange Then
+            If rtxtEditor.Modified Then
                 Dim s_msg As String
                 Dim i_ans As Integer
                 s_msg = "The text in the " & s_filename & " file has changed." & Chr(13) & Chr(13) & _
@@ -46,29 +61,158 @@ Public Class frmNotepad
 
         End Try
     End Sub
+#Region "File"
+    Private Sub mnuF_New_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuF_New.Click
+        'Code New
+    End Sub
+
+    Private Sub mnuF_Open_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuF_Open.Click
+        'Code Open
+
+    End Sub
+
+    Private Sub mnuF_Save_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuF_Save.Click
+        'Code Save
+
+    End Sub
+
+    Private Sub mnuF_Save_as_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuF_Save_as.Click
+        'Code Save As
+
+    End Sub
+
+    Private Sub mnuF_Page_setup_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuF_Page_setup.Click
+        'Code Page Setup
+        Try
+            Dim frmPageSetup As New PageSetupDialog
+            frmPageSetup.Document = New System.Drawing.Printing.PrintDocument
+            frmPageSetup.PrinterSettings = New System.Drawing.Printing.PrinterSettings
+            frmPageSetup.PageSettings = New System.Drawing.Printing.PageSettings(frmPageSetup.PrinterSettings)
+            frmPageSetup.ShowDialog()
+
+        Catch ex As Exception
+            'Quan ly loi
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub mnuF_Print_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuF_Print.Click
+        'Code Print
+        Try
+            Dim frmPrint As New PrintDialog
+            frmPrint.UseEXDialog = True
+        Catch ex As Exception
+            'Quan ly loi
+            MsgBox(ex.Message)
+        End Try
+
+    End Sub
+
+    Private Sub mnuF_Exit_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuF_Exit.Click
+        'Code Exit 
+        End
+    End Sub
+#End Region
+#Region "Edit"
+    Private Sub mnuE_Undo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Undo.Click, mnu_ct_Undo.Click
+        'Code Undo
+
+    End Sub
+
+    Private Sub mnuE_Cut_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Cut.Click, mnu_ct_Cut.Click
+        'Code Cut
+
+    End Sub
+
+    Private Sub mnuE_Copy_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Copy.Click, mnu_ct_Copy.Click
+        'Code Copy
+
+    End Sub
+
+    Private Sub mnuE_Paste_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Paste.Click, mnu_ct_Paste.Click
+        'Code Paste
+
+    End Sub
+
+    Private Sub mnuE_Delete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Delete.Click, mnu_ct_Delete.Click
+        'Code Delete
+
+    End Sub
+
+    Private Sub mnuE_Find_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Find.Click
+        'Code Find
+
+    End Sub
+    Private Sub mnuE_Find_Next_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Find_Next.Click
+        'Code Find Next
+
+    End Sub
+
+    Private Sub mnuE_Replace_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Replace.Click
+        'Code Replace
+
+    End Sub
+
+    Private Sub mnuE_Go_to_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Go_to.Click
+        'Code Goto
+
+    End Sub
+
+    Private Sub mnuE_Select_All_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Select_All.Click, mnu_ct_SelectAll.Click
+        'Code Select All
+
+    End Sub
+
+    Private Sub mnuE_Time_Date_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Time_Date.Click
+        'Code Date/Time
+        Try
+            'Khai bao bien de luu gia tri trong clipboard
+            Dim s_old_clipboard As String
+
+            'Luu lai gia tri trong clipboard
+            s_old_clipboard = Clipboard.GetText
+
+            'Dua gia tri vao Clipboard
+            Clipboard.SetText(Now.ToShortTimeString() & " " & Now.ToShortDateString)
+
+            'Paste vao vi tri hien tai
+            rtxtEditor.Paste()
+
+            'Lay lai gia tri cu
+            Clipboard.SetText(s_old_clipboard)
+        Catch ex As Exception
+            'Quan ly loi 
+            MsgBox(ex.Message)
+        End Try
+
+    End Sub
+#End Region
+#Region "Format"
 
     Private Sub mnuFm_Word_Wrap_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuFm_Word_Wrap.Click
+        'Code Word Wrap
         Try
             'Check/Uncheck
             mnuFm_Word_Wrap.CheckState = (mnuFm_Word_Wrap.CheckState + 1) Mod 2
             rtxtEditor.WordWrap = mnuFm_Word_Wrap.CheckState = CheckState.Checked
+
+            'Neu co Word wrap thi khong co status bar
+            If mnuFm_Word_Wrap.CheckState = CheckState.Checked Then
+                statusbar.Visible = False
+                mnuV_Status_Bar.CheckState = CheckState.Unchecked
+            Else
+                statusbar.Visible = statusbar.Tag = CheckState.Checked
+                mnuV_Status_Bar.CheckState = statusbar.Tag
+            End If
+
         Catch ex As Exception
             'Khong can quan ly loi
         End Try
 
-    End Sub
-
-    Private Sub mnuV_Status_Bar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuV_Status_Bar.Click
-        Try
-            'Check/Uncheck
-            mnuV_Status_Bar.CheckState = (mnuV_Status_Bar.CheckState + 1) Mod 2
-            statusbar.Visible = mnuV_Status_Bar.CheckState = CheckState.Checked
-        Catch ex As Exception
-            'Khong can quan ly loi
-        End Try
     End Sub
 
     Private Sub mnuFm_Font_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuFm_Font.Click
+        'Code Font
         Try
             Dim frmFont As New FontDialog
             'Lay font hien tai
@@ -85,6 +229,77 @@ Public Class frmNotepad
         End Try
 
     End Sub
+#End Region
+#Region "View"
+
+    Private Sub mnuV_Status_Bar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuV_Status_Bar.Click
+        'Code Status Bar
+        Try
+            'Check/Uncheck
+            mnuV_Status_Bar.CheckState = (mnuV_Status_Bar.CheckState + 1) Mod 2
+            statusbar.Visible = mnuV_Status_Bar.CheckState = CheckState.Checked
+            statusbar.Tag = mnuV_Status_Bar.CheckState
+        Catch ex As Exception
+            'Khong can quan ly loi
+        End Try
+    End Sub
+#End Region
+#Region "Help"
+    Private Sub mnuH_Help_Topics_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuH_Help_Topics.Click
+        'Code Help Topics
+
+    End Sub
+
+    Private Sub mnuH_About_Notepad_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuH_About_Notepad.Click
+        'Code About
+
+    End Sub
+#End Region
+#Region "ContextMenu"
+    Private Sub mnu_Context_Opening(ByVal sender As System.Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles mnu_Context.Opening
+        Try
+            Dim b_isSelectText As Boolean
+            'Xet xem co chon text nao hay khong
+            b_isSelectText = rtxtEditor.SelectionLength > 0
+            'Neu khong chon thi Disable cac menu Cut,Copy,Delete va nguoc lai
+            mnu_ct_Copy.Enabled = b_isSelectText
+            mnu_ct_Cut.Enabled = b_isSelectText
+            mnu_ct_Delete.Enabled = b_isSelectText
+
+            mnu_Context.RightToLeft = Windows.Forms.RightToLeft.No
+            mnu_Context.DefaultDropDownDirection = ToolStripDropDownDirection.AboveRight
+
+        Catch ex As Exception
+            'Quan ly loi
+            MsgBox(ex.Message)
+        End Try
+    End Sub
+
+    Private Sub mnu_ct_Right2Left_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnu_ct_Right2Left.Click
+        'Code Right to left 
+        Try
+            'Check/Uncheck
+            mnu_ct_Right2Left.CheckState = (mnu_ct_Right2Left.CheckState + 1) Mod 2
+            If mnu_ct_Right2Left.CheckState = CheckState.Checked Then
+                rtxtEditor.RightToLeft = Windows.Forms.RightToLeft.Yes
+            Else
+                rtxtEditor.RightToLeft = Windows.Forms.RightToLeft.No
+            End If
+        Catch ex As Exception
+            'Khong can quan ly loi
+        End Try
+
+    End Sub
+
+    Private Sub mnu_ct_ShowUnicode_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnu_ct_ShowUnicode.Click
+        'Code Show Unicode
+    End Sub
+
+    Private Sub mnu_ct_InsertUnicode_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnu_ct_InsertUnicode.Click
+        'Code Insert UniCode
+
+    End Sub
+#End Region
 #End Region
 #Region "Cac ham xu ly"
 
