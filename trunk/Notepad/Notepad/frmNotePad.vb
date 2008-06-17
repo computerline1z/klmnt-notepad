@@ -1,4 +1,4 @@
-Imports System.IO
+﻿Imports System.IO
 Imports System.Drawing.Printing
 Imports System.Windows.Forms
 'Imports System.ComponentModel
@@ -370,6 +370,7 @@ Public Class frmNotepad
 
     Private Sub mnuH_About_Notepad_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuH_About_Notepad.Click
         'Code About
+        'tạo code o day
 
     End Sub
 #End Region
