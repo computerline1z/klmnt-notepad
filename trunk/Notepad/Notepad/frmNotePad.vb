@@ -8,6 +8,7 @@ Public Class frmNotepad
     Private WithEvents docToPrint As New Printing.PrintDocument
     Private pgs_PageSettings As PageSettings
     Private prs_PrinterSettings As PrinterSettings
+    Public i As Integer
 
 #Region "Hieu ung bong mo"
     Const CS_DROPSHADOW = &H20000
@@ -35,8 +36,18 @@ Public Class frmNotepad
 
     End Sub
 
-    Private Sub rtxtEditor_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rtxtEditor.TextChanged
+    Private Sub rtxtEditor_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles rtxtEditor.Click
+        Dim p As New Point
+        p.X = System.Windows.Forms.Cursor.Position.X
+        p.Y = System.Windows.Forms.Cursor.Position.Y
+        i = rtxtEditor.GetCharIndexFromPosition(p)
+    End Sub
 
+    Private Sub rtxtEditor_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rtxtEditor.TextChanged
+        Dim p As New Point
+        p.X = System.Windows.Forms.Cursor.Position.X
+        p.Y = System.Windows.Forms.Cursor.Position.Y
+        i = rtxtEditor.GetCharIndexFromPosition(p)
     End Sub
 
     Private Sub mainMenu_MenuActivate(ByVal sender As Object, ByVal e As System.EventArgs) Handles mainMenu.MenuActivate
@@ -97,6 +108,7 @@ Public Class frmNotepad
             MsgBox(ex.Message)
         End Try
     End Sub
+
 #Region "File"
     Private Sub mnuF_New_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuF_New.Click
         'Code New
@@ -251,7 +263,7 @@ Public Class frmNotepad
 
     Private Sub mnuE_Paste_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Paste.Click, mnu_ct_Paste.Click
         'Code Paste
-
+        Paste()
     End Sub
 
     Private Sub mnuE_Delete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Delete.Click, mnu_ct_Delete.Click
@@ -279,7 +291,7 @@ Public Class frmNotepad
 
     Private Sub mnuE_Select_All_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Select_All.Click, mnu_ct_SelectAll.Click
         'Code Select All
-
+        rtxtEditor.Select(0, rtxtEditor.Text.Length)
     End Sub
 
     Private Sub mnuE_Time_Date_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Time_Date.Click
@@ -467,6 +479,17 @@ Public Class frmNotepad
 
     Public Sub mnUndo()
         rtxtEditor.Undo()
+    End Sub
+
+    Public Sub Paste()
+        Dim tmp, tmp1 As String
+        Dim tmp2 As String = ""
+        tmp = rtxtEditor.Text.Trim()
+        tmp1 = tmp.Substring(0, i + 1)
+        If tmp.Length > i + 1 Then
+            tmp2 = tmp.Substring(i + 2, tmp.Length - i)
+        End If
+        rtxtEditor.Text = tmp1 & System.Windows.Forms.Clipboard.GetText.ToString & tmp2
     End Sub
 
 #End Region
