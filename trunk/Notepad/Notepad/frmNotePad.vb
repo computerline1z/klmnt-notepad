@@ -1,6 +1,14 @@
 Imports System.IO
-
+Imports System.Drawing.Printing
+Imports System.Windows.Forms
+'Imports System.ComponentModel
+Imports System.Drawing
 Public Class frmNotepad
+
+    Private WithEvents docToPrint As New Printing.PrintDocument
+    Private pgs_PageSettings As PageSettings
+    Private prs_PrinterSettings As PrinterSettings
+
 #Region "Hieu ung bong mo"
     Const CS_DROPSHADOW = &H20000
     Protected Overrides ReadOnly Property CreateParams() As System.Windows.Forms.CreateParams
@@ -15,6 +23,8 @@ Public Class frmNotepad
 
     Private Sub frmNotepad_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         'Khoi tao cac bien
+        pgs_PageSettings = New System.Drawing.Printing.PageSettings
+        prs_PrinterSettings = New System.Drawing.Printing.PrinterSettings
 
         'Khoi tao cac trang thai cua control
         mnuFm_Word_Wrap.CheckState = CheckState.Unchecked
@@ -81,7 +91,7 @@ Public Class frmNotepad
                         ')
                 End Select
             End If
-            coolCloseForm(Me, 20)
+            coolCloseForm(Me, 1.1)
         Catch ex As Exception
             'Quan ly loi khi ket thuc chuong trinh
             MsgBox(ex.Message)
@@ -172,10 +182,14 @@ Public Class frmNotepad
         'Code Page Setup
         Try
             Dim frmPageSetup As New PageSetupDialog
-            frmPageSetup.Document = New System.Drawing.Printing.PrintDocument
-            frmPageSetup.PrinterSettings = New System.Drawing.Printing.PrinterSettings
-            frmPageSetup.PageSettings = New System.Drawing.Printing.PageSettings(frmPageSetup.PrinterSettings)
+            'Thiet lap cac tham so hien tai
+            frmPageSetup.Document = docToPrint
+            frmPageSetup.PrinterSettings = prs_PrinterSettings
+            frmPageSetup.PageSettings = pgs_PageSettings
             frmPageSetup.ShowDialog()
+            'Luu thiet lap vao bien
+            pgs_PageSettings = frmPageSetup.PageSettings
+            prs_PrinterSettings = frmPageSetup.PrinterSettings
 
         Catch ex As Exception
             'Quan ly loi
@@ -186,8 +200,26 @@ Public Class frmNotepad
     Private Sub mnuF_Print_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuF_Print.Click
         'Code Print
         Try
+
             Dim frmPrint As New PrintDialog
-            frmPrint.UseEXDialog = True
+            frmPrint.AllowSomePages = True
+            frmPrint.ShowHelp = True
+
+            frmPrint.Document = docToPrint
+
+            If (frmPrint.ShowDialog() = Windows.Forms.DialogResult.OK) Then
+                'Thiet lap may in va kho giay
+                docToPrint.PrinterSettings = prs_PrinterSettings
+                docToPrint.DefaultPageSettings = pgs_PageSettings
+                'IN
+                If frmPrint.PrintToFile Then
+                    docToPrint.PrinterSettings.PrintToFile = True
+                End If
+
+                docToPrint.Print()
+
+            End If
+
         Catch ex As Exception
             'Quan ly loi
             MsgBox(ex.Message)
@@ -407,7 +439,7 @@ Public Class frmNotepad
             MsgBox(ex.Message)
         End Try
     End Sub
-    Public Sub coolCloseForm(ByVal closeForm As Form, ByVal speed As Integer)
+    Public Sub coolCloseForm(ByVal closeForm As Form, ByVal speed As Single)
 
         If speed = 0 Then
             MsgBox("Speed cannot zero")
@@ -415,26 +447,20 @@ Public Class frmNotepad
         End If
 
         On Error Resume Next
-        'closeForm.Scale = 1
-        closeForm.WindowState = 0
-        Dim oldval As Integer
-        oldval = closeForm.Height + 1
-        Do Until closeForm.Height > oldval Or closeForm.Height < 50
-            oldval = closeForm.Height
+        'Form mo dan roi dong Cho giong Vista :)
+        Do Until closeForm.Opacity < 0.1
             Application.DoEvents()
-            'closeForm.Opacity = closeForm.Opacity / 2.5
-            closeForm.Height = closeForm.Height - speed * 8
-            closeForm.Top = closeForm.Top + speed * 4
-
-        Loop
-        oldval = closeForm.Width + 1
-        Do Until closeForm.Width > oldval Or closeForm.Width < 120
-            Application.DoEvents()
-            oldval = closeForm.Width
-            closeForm.Width = closeForm.Width - speed * 8
-            closeForm.Left = closeForm.Left + speed * 4
+            closeForm.Opacity = closeForm.Opacity / speed
         Loop
         closeForm.Dispose()
+    End Sub
+    Private Sub document_PrintPage(ByVal sender As Object, _
+         ByVal e As System.Drawing.Printing.PrintPageEventArgs) _
+              Handles docToPrint.PrintPage
+        'In
+        e.Graphics.DrawString(rtxtEditor.Text, rtxtEditor.Font, _
+            System.Drawing.Brushes.Black, e.MarginBounds.Left, e.MarginBounds.Top)
+
     End Sub
 
 #End Region
