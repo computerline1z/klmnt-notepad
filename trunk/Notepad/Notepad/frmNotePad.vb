@@ -364,13 +364,12 @@ Public Class frmNotepad
 #End Region
 #Region "Help"
     Private Sub mnuH_Help_Topics_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuH_Help_Topics.Click
-        'Code Help Topics
+        Help.ShowHelp(Label1, "help/notepad.chm")
 
     End Sub
 
     Private Sub mnuH_About_Notepad_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuH_About_Notepad.Click
-        'Code About
-        'tạo code o day
+        Help.ShowHelp(Label1, "help/notepad.chm")
 
     End Sub
 #End Region

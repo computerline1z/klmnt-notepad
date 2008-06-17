@@ -73,6 +73,7 @@ Partial Class frmNotepad
         Me.statusbar1 = New System.Windows.Forms.ToolStripStatusLabel
         Me.statusbar2 = New System.Windows.Forms.ToolStripStatusLabel
         Me.statusbar3 = New System.Windows.Forms.ToolStripStatusLabel
+        Me.Label1 = New System.Windows.Forms.Label
         Me.mainMenu.SuspendLayout()
         Me.mnu_Context.SuspendLayout()
         Me.statusbar.SuspendLayout()
@@ -421,11 +422,22 @@ Partial Class frmNotepad
         Me.statusbar3.Text = "       "
         Me.statusbar3.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(426, 337)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(39, 13)
+        Me.Label1.TabIndex = 4
+        Me.Label1.Text = "Label1"
+        Me.Label1.Visible = False
+        '
         'frmNotepad
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(522, 372)
+        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.rtxtEditor)
         Me.Controls.Add(Me.mainMenu)
         Me.Controls.Add(Me.statusbar)
@@ -433,6 +445,7 @@ Partial Class frmNotepad
         Me.MainMenuStrip = Me.mainMenu
         Me.Name = "frmNotepad"
         Me.Text = "Unititled - Notepad"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.mainMenu.ResumeLayout(False)
         Me.mainMenu.PerformLayout()
         Me.mnu_Context.ResumeLayout(False)
@@ -494,5 +507,6 @@ Partial Class frmNotepad
     Friend WithEvents mnu_ct_Right2Left As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents mnu_ct_ShowUnicode As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents mnu_ct_InsertUnicode As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents Label1 As System.Windows.Forms.Label
 
 End Class
