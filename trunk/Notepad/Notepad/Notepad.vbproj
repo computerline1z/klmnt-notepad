@@ -50,6 +50,12 @@
     <Import Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmAbout.Designer.vb">
+      <DependentUpon>frmAbout.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmAbout.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmNotePad.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +81,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="frmAbout.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmAbout.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmNotePad.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmNotePad.vb</DependentUpon>
@@ -98,6 +108,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\web_01.gif" />
+    <None Include="Resources\web_02.gif" />
+    <None Include="Resources\web_12.gif" />
     <Content Include="txt.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
