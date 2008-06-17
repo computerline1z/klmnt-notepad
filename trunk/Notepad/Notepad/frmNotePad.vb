@@ -235,7 +235,8 @@ Public Class frmNotepad
 #Region "Edit"
     Private Sub mnuE_Undo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Undo.Click, mnu_ct_Undo.Click
         'Code Undo
-
+        rtxtEditor.ReadOnly = False
+        mnUndo()
     End Sub
 
     Private Sub mnuE_Cut_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Cut.Click, mnu_ct_Cut.Click
@@ -461,6 +462,10 @@ Public Class frmNotepad
         e.Graphics.DrawString(rtxtEditor.Text, rtxtEditor.Font, _
             System.Drawing.Brushes.Black, e.MarginBounds.Left, e.MarginBounds.Top)
 
+    End Sub
+
+    Public Sub mnUndo()
+        rtxtEditor.Undo()
     End Sub
 
 #End Region
