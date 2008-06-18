@@ -143,7 +143,6 @@ Public Class frmNotepad
         'rtxtEditor.Tag = Nothing
         '(LINH
         Try
-
             If rtxtEditor.Modified Then
                 Dim s_filename As String
                 Dim s_msg As String
@@ -388,13 +387,25 @@ Public Class frmNotepad
 
     Private Sub mnuE_Find_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Find.Click
         'Code Find
+        If FrmReplace.Visible Then
+            FrmReplace.Activate()
+            Exit Sub
+        End If
         frmFind.Owner = Me
         frmFind.Show()
+        frmFind.Activate()
+
+        'Gan gia tri tim kiem truoc do
         frmFind.txtFind.Text = s_textFind
         frmFind.txtFind.SelectAll()
     End Sub
     Private Sub mnuE_Find_Next_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Find_Next.Click
         'Code Find Next
+        If FrmReplace.Visible Then
+            FrmReplace.Activate()
+            Exit Sub
+        End If
+
         If s_textFind = "" Then
             mnuE_Find_Click(sender, e)
         Else
@@ -405,8 +416,20 @@ Public Class frmNotepad
 
     Private Sub mnuE_Replace_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Replace.Click
         'Code Replace
+        If frmFind.Visible Then
+            frmFind.Activate()
+            Exit Sub
+        End If
+
         FrmReplace.Owner = Me
         FrmReplace.Show()
+        FrmReplace.Activate()
+
+        'Gan gia tri tim kiem truoc do
+        FrmReplace.txtTextFind.Text = s_textFind
+        FrmReplace.txtTextFind.SelectAll()
+        'Gan gia tri thay the truoc do
+        FrmReplace.txtTextReplace.Text = s_textReplace
     End Sub
 
     Private Sub mnuE_Go_to_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Go_to.Click
@@ -587,6 +610,11 @@ Public Class frmNotepad
         End If
 
         On Error Resume Next
+        'Don tat cac cac form con truoc
+        Dim frmChild As Form
+        For Each frmChild In closeForm.OwnedForms
+            frmChild.Dispose()
+        Next
         'Form mo dan roi dong Cho giong Vista :)
         Do Until closeForm.Opacity < 0.1
             Application.DoEvents()
@@ -607,16 +635,6 @@ Public Class frmNotepad
         rtxtEditor.Undo()
     End Sub
 
-    Public Sub Paste()
-        Dim tmp, tmp1 As String
-        Dim tmp2 As String = ""
-        tmp = rtxtEditor.Text.Trim()
-        tmp1 = tmp.Substring(0, i + 1)
-        If tmp.Length > i + 1 Then
-            tmp2 = tmp.Substring(i + 2, tmp.Length - i)
-        End If
-        rtxtEditor.Text = tmp1 & System.Windows.Forms.Clipboard.GetText.ToString & tmp2
-    End Sub
     Private Sub ChangeMainMenu()
         'Ham nay dung de enable/Disable cac menu Cut, Copy,...
 
@@ -664,7 +682,6 @@ Public Class frmNotepad
         Dim i_start As Integer
         Dim i_end As Integer
 
-
         If RTF_OptFind = RichTextBoxFinds.Reverse Then
             'Neu la tim nguoc
             i_start = 0
@@ -682,6 +699,33 @@ Public Class frmNotepad
         Else
             Me.s_textFind = s_textFind
         End If
+    End Sub
+    Public Sub FindNReplace(ByVal s_textFind As String, ByVal s_textReplace As String, ByVal RTF_OptFind As RichTextBoxFinds)
+        'Thay the chuoi duoc chon
+        If rtxtEditor.SelectedText = s_textFind Then
+            rtxtEditor.SelectedText = s_textReplace
+        End If
+        'Tim chuoi ky tu thay the tiep theo
+        Dim i_start As Integer
+        Dim i_end As Integer
+
+        i_start = rtxtEditor.SelectionStart + rtxtEditor.SelectionLength
+        i_end = rtxtEditor.TextLength + 1
+
+        i_start = rtxtEditor.Find(s_textFind, i_start, i_end, RTF_OptFind)
+
+        If i_start = -1 Then
+            MsgBox("Can't find """ & s_textFind & """", MsgBoxStyle.Information)
+        Else
+            Me.s_textFind = s_textFind
+            Me.s_textReplace = s_textReplace
+        End If
+
+    End Sub
+    Public Sub ReplaceAll(ByVal s_textFind As String, ByVal s_textReplace As String, ByVal i_Compare As Integer)
+        rtxtEditor.Text = Replace(rtxtEditor.Text, s_textFind, s_textReplace, , , i_Compare)
+        Me.s_textFind = s_textFind
+        Me.s_textReplace = s_textReplace
     End Sub
 #End Region
 End Class

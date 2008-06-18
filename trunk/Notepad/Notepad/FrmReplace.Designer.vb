@@ -22,21 +22,22 @@ Partial Class FrmReplace
         Me.btnReplace = New System.Windows.Forms.Button
         Me.Label1 = New System.Windows.Forms.Label
         Me.Label2 = New System.Windows.Forms.Label
-        Me.TextBox1 = New System.Windows.Forms.TextBox
-        Me.TextBox2 = New System.Windows.Forms.TextBox
+        Me.txtTextFind = New System.Windows.Forms.TextBox
+        Me.txtTextReplace = New System.Windows.Forms.TextBox
         Me.btnFNext = New System.Windows.Forms.Button
         Me.btnRplaceAll = New System.Windows.Forms.Button
         Me.btnCancel = New System.Windows.Forms.Button
-        Me.chkbCase = New System.Windows.Forms.CheckBox
+        Me.chkMatchCase = New System.Windows.Forms.CheckBox
         Me.SuspendLayout()
         '
         'btnReplace
         '
+        Me.btnReplace.Enabled = False
         Me.btnReplace.Location = New System.Drawing.Point(257, 32)
         Me.btnReplace.Name = "btnReplace"
         Me.btnReplace.Size = New System.Drawing.Size(75, 23)
-        Me.btnReplace.TabIndex = 0
-        Me.btnReplace.Text = "Replace"
+        Me.btnReplace.TabIndex = 6
+        Me.btnReplace.Text = "&Replace"
         Me.btnReplace.UseVisualStyleBackColor = True
         '
         'Label1
@@ -45,8 +46,8 @@ Partial Class FrmReplace
         Me.Label1.Location = New System.Drawing.Point(8, 12)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(53, 13)
-        Me.Label1.TabIndex = 1
-        Me.Label1.Text = "Find what"
+        Me.Label1.TabIndex = 0
+        Me.Label1.Text = "Fi&nd what"
         '
         'Label2
         '
@@ -55,76 +56,84 @@ Partial Class FrmReplace
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(69, 13)
         Me.Label2.TabIndex = 2
-        Me.Label2.Text = "Replace with"
+        Me.Label2.Text = "Re&place with"
         '
-        'TextBox1
+        'txtTextFind
         '
-        Me.TextBox1.Location = New System.Drawing.Point(84, 9)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(167, 20)
-        Me.TextBox1.TabIndex = 3
+        Me.txtTextFind.Location = New System.Drawing.Point(84, 9)
+        Me.txtTextFind.Name = "txtTextFind"
+        Me.txtTextFind.Size = New System.Drawing.Size(167, 20)
+        Me.txtTextFind.TabIndex = 1
         '
-        'TextBox2
+        'txtTextReplace
         '
-        Me.TextBox2.Location = New System.Drawing.Point(83, 38)
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(168, 20)
-        Me.TextBox2.TabIndex = 4
+        Me.txtTextReplace.Location = New System.Drawing.Point(84, 38)
+        Me.txtTextReplace.Name = "txtTextReplace"
+        Me.txtTextReplace.Size = New System.Drawing.Size(168, 20)
+        Me.txtTextReplace.TabIndex = 3
         '
         'btnFNext
         '
+        Me.btnFNext.Enabled = False
         Me.btnFNext.Location = New System.Drawing.Point(257, 5)
         Me.btnFNext.Name = "btnFNext"
         Me.btnFNext.Size = New System.Drawing.Size(75, 23)
-        Me.btnFNext.TabIndex = 0
-        Me.btnFNext.Text = "Find Next"
+        Me.btnFNext.TabIndex = 5
+        Me.btnFNext.Text = "&Find Next"
         Me.btnFNext.UseVisualStyleBackColor = True
         '
         'btnRplaceAll
         '
+        Me.btnRplaceAll.Enabled = False
         Me.btnRplaceAll.Location = New System.Drawing.Point(257, 59)
         Me.btnRplaceAll.Name = "btnRplaceAll"
         Me.btnRplaceAll.Size = New System.Drawing.Size(75, 23)
-        Me.btnRplaceAll.TabIndex = 0
-        Me.btnRplaceAll.Text = "Replace All"
+        Me.btnRplaceAll.TabIndex = 7
+        Me.btnRplaceAll.Text = "Replace &All"
         Me.btnRplaceAll.UseVisualStyleBackColor = True
         '
         'btnCancel
         '
+        Me.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnCancel.Location = New System.Drawing.Point(257, 86)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(75, 23)
-        Me.btnCancel.TabIndex = 0
+        Me.btnCancel.TabIndex = 8
         Me.btnCancel.Text = "Cancel"
         Me.btnCancel.UseVisualStyleBackColor = True
         '
-        'chkbCase
+        'chkMatchCase
         '
-        Me.chkbCase.AutoSize = True
-        Me.chkbCase.Location = New System.Drawing.Point(11, 90)
-        Me.chkbCase.Name = "chkbCase"
-        Me.chkbCase.Size = New System.Drawing.Size(82, 17)
-        Me.chkbCase.TabIndex = 5
-        Me.chkbCase.Text = "Match case"
-        Me.chkbCase.UseVisualStyleBackColor = True
+        Me.chkMatchCase.AutoSize = True
+        Me.chkMatchCase.Location = New System.Drawing.Point(11, 90)
+        Me.chkMatchCase.Name = "chkMatchCase"
+        Me.chkMatchCase.Size = New System.Drawing.Size(82, 17)
+        Me.chkMatchCase.TabIndex = 4
+        Me.chkMatchCase.Text = "Match &case"
+        Me.chkMatchCase.UseVisualStyleBackColor = True
         '
         'FrmReplace
         '
+        Me.AcceptButton = Me.btnFNext
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.CancelButton = Me.btnCancel
         Me.ClientSize = New System.Drawing.Size(338, 122)
-        Me.Controls.Add(Me.chkbCase)
-        Me.Controls.Add(Me.TextBox2)
-        Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.chkMatchCase)
+        Me.Controls.Add(Me.txtTextReplace)
+        Me.Controls.Add(Me.txtTextFind)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.btnFNext)
         Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.btnRplaceAll)
         Me.Controls.Add(Me.btnReplace)
+        Me.HelpButton = True
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FrmReplace"
+        Me.ShowIcon = False
+        Me.ShowInTaskbar = False
         Me.Text = "Replace"
         Me.ResumeLayout(False)
         Me.PerformLayout()
@@ -133,10 +142,10 @@ Partial Class FrmReplace
     Friend WithEvents btnReplace As System.Windows.Forms.Button
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
-    Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
+    Friend WithEvents txtTextFind As System.Windows.Forms.TextBox
+    Friend WithEvents txtTextReplace As System.Windows.Forms.TextBox
     Friend WithEvents btnFNext As System.Windows.Forms.Button
     Friend WithEvents btnRplaceAll As System.Windows.Forms.Button
     Friend WithEvents btnCancel As System.Windows.Forms.Button
-    Friend WithEvents chkbCase As System.Windows.Forms.CheckBox
+    Friend WithEvents chkMatchCase As System.Windows.Forms.CheckBox
 End Class
