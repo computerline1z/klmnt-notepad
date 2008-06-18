@@ -28,17 +28,17 @@ Partial Class FrmGoto
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(13, 14)
+        Me.Label1.Location = New System.Drawing.Point(4, 14)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(67, 13)
         Me.Label1.TabIndex = 0
-        Me.Label1.Text = "Line Number"
+        Me.Label1.Text = "&Line Number"
         '
         'TextBox1
         '
-        Me.TextBox1.Location = New System.Drawing.Point(86, 11)
+        Me.TextBox1.Location = New System.Drawing.Point(91, 11)
         Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(98, 20)
+        Me.TextBox1.Size = New System.Drawing.Size(87, 20)
         Me.TextBox1.TabIndex = 1
         '
         'btnOk
@@ -52,6 +52,7 @@ Partial Class FrmGoto
         '
         'btnCancel
         '
+        Me.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.btnCancel.Location = New System.Drawing.Point(127, 52)
         Me.btnCancel.Name = "btnCancel"
         Me.btnCancel.Size = New System.Drawing.Size(75, 23)
@@ -61,16 +62,21 @@ Partial Class FrmGoto
         '
         'FrmGoto
         '
+        Me.AcceptButton = Me.btnOk
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(230, 102)
+        Me.CancelButton = Me.btnCancel
+        Me.ClientSize = New System.Drawing.Size(271, 85)
         Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.btnOk)
         Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.Label1)
+        Me.HelpButton = True
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FrmGoto"
+        Me.ShowIcon = False
+        Me.ShowInTaskbar = False
         Me.Text = "Goto line"
         Me.ResumeLayout(False)
         Me.PerformLayout()
