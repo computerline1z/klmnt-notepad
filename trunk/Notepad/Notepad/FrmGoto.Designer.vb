@@ -20,7 +20,7 @@ Partial Class FrmGoto
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.Label1 = New System.Windows.Forms.Label
-        Me.TextBox1 = New System.Windows.Forms.TextBox
+        Me.txtLine = New System.Windows.Forms.TextBox
         Me.btnOk = New System.Windows.Forms.Button
         Me.btnCancel = New System.Windows.Forms.Button
         Me.SuspendLayout()
@@ -34,12 +34,12 @@ Partial Class FrmGoto
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "&Line Number"
         '
-        'TextBox1
+        'txtLine
         '
-        Me.TextBox1.Location = New System.Drawing.Point(91, 11)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(87, 20)
-        Me.TextBox1.TabIndex = 1
+        Me.txtLine.Location = New System.Drawing.Point(91, 11)
+        Me.txtLine.Name = "txtLine"
+        Me.txtLine.Size = New System.Drawing.Size(87, 20)
+        Me.txtLine.TabIndex = 1
         '
         'btnOk
         '
@@ -69,7 +69,7 @@ Partial Class FrmGoto
         Me.ClientSize = New System.Drawing.Size(271, 85)
         Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.btnOk)
-        Me.Controls.Add(Me.TextBox1)
+        Me.Controls.Add(Me.txtLine)
         Me.Controls.Add(Me.Label1)
         Me.HelpButton = True
         Me.MaximizeBox = False
@@ -83,7 +83,7 @@ Partial Class FrmGoto
 
     End Sub
     Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
+    Friend WithEvents txtLine As System.Windows.Forms.TextBox
     Friend WithEvents btnOk As System.Windows.Forms.Button
     Friend WithEvents btnCancel As System.Windows.Forms.Button
 End Class

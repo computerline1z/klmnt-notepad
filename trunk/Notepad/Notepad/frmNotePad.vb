@@ -435,7 +435,13 @@ Public Class frmNotepad
 
     Private Sub mnuE_Go_to_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Go_to.Click
         'Code Goto
+        Dim i_Col As Integer
+        Dim i_ln As Integer
+        i_Col = rtxtEditor.SelectionStart + 1
+        i_ln = rtxtEditor.GetLineFromCharIndex(i_Col) + 1
         Dim myGoto As New FrmGoto
+        myGoto.txtLine.Text = i_ln.ToString
+        myGoto.txtLine.SelectAll()
         myGoto.ShowDialog()
     End Sub
 
@@ -723,6 +729,9 @@ Public Class frmNotepad
         rtxtEditor.Text = Replace(rtxtEditor.Text, s_textFind, s_textReplace, , , i_Compare)
         Me.s_textFind = s_textFind
         Me.s_textReplace = s_textReplace
+    End Sub
+    Public Sub GoToLine(ByVal i_line As Long)
+        rtxtEditor.SelectionStart = rtxtEditor.GetFirstCharIndexFromLine(i_line)
     End Sub
 #End Region
 End Class
