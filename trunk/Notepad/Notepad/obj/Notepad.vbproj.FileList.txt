@@ -20,3 +20,4 @@ obj\Release\Notepad.xml
 obj\Release\Notepad.pdb
 obj\Debug\Notepad.frmAbout.resources
 obj\Debug\Notepad.frmFind.resources
+obj\Debug\Notepad.FrmReplace.resources

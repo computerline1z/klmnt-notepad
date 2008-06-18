@@ -273,14 +273,19 @@ Public Class frmNotepad
 
     Private Sub mnuE_Find_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Find.Click
         'Code Find
+        Dim myFind As New frmFind
+        myFind.ShowDialog()
     End Sub
     Private Sub mnuE_Find_Next_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Find_Next.Click
         'Code Find Next
-
+        Dim myFindNext As New frmFind
+        myFindNext.ShowDialog()
     End Sub
 
     Private Sub mnuE_Replace_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Replace.Click
         'Code Replace
+        Dim myReplace As New FrmReplace
+        myReplace.ShowDialog()
 
     End Sub
 

@@ -70,6 +70,12 @@
       <DependentUpon>frmNotePad.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FrmReplace.Designer.vb">
+      <DependentUpon>FrmReplace.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmReplace.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Mod_app.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -99,6 +105,10 @@
     <EmbeddedResource Include="frmNotePad.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmNotePad.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmReplace.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmReplace.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
