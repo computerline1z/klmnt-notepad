@@ -128,6 +128,7 @@ Partial Class FrmReplace
         Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.btnRplaceAll)
         Me.Controls.Add(Me.btnReplace)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.HelpButton = True
         Me.MaximizeBox = False
         Me.MinimizeBox = False

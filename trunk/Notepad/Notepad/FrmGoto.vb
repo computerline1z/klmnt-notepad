@@ -23,4 +23,9 @@ Public Class FrmGoto
         End Try
 
     End Sub
+
+    Private Sub txtLine_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtLine.KeyPress
+        If IsNumeric(e.KeyChar) <> True Then e.KeyChar = ""
+    End Sub
+
 End Class

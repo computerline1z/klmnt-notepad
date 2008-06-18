@@ -30,7 +30,6 @@ Partial Class frmAbout
         'PictureBox1
         '
         Me.PictureBox1.Dock = System.Windows.Forms.DockStyle.Top
-        'Me.PictureBox1.Image = Global.Notepad.My.Resources.Resources.web_01
         Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(332, 67)
@@ -39,9 +38,10 @@ Partial Class frmAbout
         '
         'cmdOK
         '
-        Me.cmdOK.Location = New System.Drawing.Point(252, 194)
+        Me.cmdOK.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.cmdOK.Location = New System.Drawing.Point(252, 209)
         Me.cmdOK.Name = "cmdOK"
-        Me.cmdOK.Size = New System.Drawing.Size(34, 23)
+        Me.cmdOK.Size = New System.Drawing.Size(68, 23)
         Me.cmdOK.TabIndex = 3
         Me.cmdOK.Text = "OK"
         Me.cmdOK.UseVisualStyleBackColor = True
@@ -49,7 +49,6 @@ Partial Class frmAbout
         'PictureBox2
         '
         Me.PictureBox2.Dock = System.Windows.Forms.DockStyle.Left
-        'Me.PictureBox2.Image = Global.Notepad.My.Resources.Resources.web_12
         Me.PictureBox2.Location = New System.Drawing.Point(0, 67)
         Me.PictureBox2.Name = "PictureBox2"
         Me.PictureBox2.Size = New System.Drawing.Size(87, 177)
@@ -58,11 +57,13 @@ Partial Class frmAbout
         '
         'RichTextBox1
         '
-        Me.RichTextBox1.BackColor = System.Drawing.Color.LightYellow
+        Me.RichTextBox1.BackColor = System.Drawing.Color.OldLace
         Me.RichTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.RichTextBox1.BulletIndent = 3
         Me.RichTextBox1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.RichTextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.RichTextBox1.Location = New System.Drawing.Point(87, 67)
+        Me.RichTextBox1.Margin = New System.Windows.Forms.Padding(10)
         Me.RichTextBox1.Name = "RichTextBox1"
         Me.RichTextBox1.Size = New System.Drawing.Size(245, 177)
         Me.RichTextBox1.TabIndex = 6
@@ -70,15 +71,22 @@ Partial Class frmAbout
         '
         'frmAbout
         '
+        Me.AcceptButton = Me.cmdOK
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.CancelButton = Me.cmdOK
         Me.ClientSize = New System.Drawing.Size(332, 244)
         Me.Controls.Add(Me.cmdOK)
         Me.Controls.Add(Me.RichTextBox1)
         Me.Controls.Add(Me.PictureBox2)
         Me.Controls.Add(Me.PictureBox1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "frmAbout"
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
+        Me.ShowIcon = False
+        Me.ShowInTaskbar = False
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "About Notepad"
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()

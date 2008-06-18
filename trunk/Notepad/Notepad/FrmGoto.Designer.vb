@@ -71,6 +71,7 @@ Partial Class FrmGoto
         Me.Controls.Add(Me.btnOk)
         Me.Controls.Add(Me.txtLine)
         Me.Controls.Add(Me.Label1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.HelpButton = True
         Me.MaximizeBox = False
         Me.MinimizeBox = False
