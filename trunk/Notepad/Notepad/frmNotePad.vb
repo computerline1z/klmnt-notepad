@@ -9,6 +9,7 @@ Public Class frmNotepad
     Private pgs_PageSettings As PageSettings
     Private prs_PrinterSettings As PrinterSettings
     Public i As Integer
+    Private canc As Integer
 
 #Region "Hieu ung bong mo"
     Const CS_DROPSHADOW = &H20000
@@ -112,6 +113,42 @@ Public Class frmNotepad
 #Region "File"
     Private Sub mnuF_New_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuF_New.Click
         'Code New
+        If (rtxtEditor.Text <> "") Then
+            Dim s_msg As String
+            Dim i_ans As Integer
+            Dim s_filename As String
+            ' Dim Canc As New SaveFileDialog
+            If rtxtEditor.Tag Is Nothing Then
+                s_filename = "Untitled"
+            Else
+                s_filename = rtxtEditor.Tag.Substring(rtxtEditor.Tag.LastIndexOf("\") + 1).Trim
+            End If
+            s_msg = "The text in the " & s_filename & " file has changed." & Chr(13) & Chr(13) & _
+                    "Do you want to save the changes?"
+            i_ans = (MsgBox(s_msg, MsgBoxStyle.Exclamation Or MsgBoxStyle.YesNoCancel, Application.ProductName))
+            Select Case i_ans
+                Case MsgBoxResult.Cancel
+                    Return
+                Case MsgBoxResult.No
+                    rtxtEditor.Text = ""
+                Case MsgBoxResult.Yes
+
+                    '(Xu ly luu 
+                    'Code 
+                    If (rtxtEditor.Tag Is Nothing) Then
+                        mnuF_Save_Click(sender, e)
+                        If canc = 1 Then
+                            Return
+                        Else : rtxtEditor.Text = ""
+                        End If
+                        ')
+                    Else
+                        SaveToFile(rtxtEditor.Tag)
+                        rtxtEditor.Text = ""
+                    End If
+            End Select
+        End If
+        rtxtEditor.Tag = Nothing
     End Sub
 
     Private Sub mnuF_Open_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuF_Open.Click
@@ -183,6 +220,8 @@ Public Class frmNotepad
 
             If frmSave.ShowDialog() = Windows.Forms.DialogResult.OK Then
                 SaveToFile(frmSave.FileName)
+                ' UPDATE By KHA
+            Else : canc = 1
             End If
         Catch ex As Exception
             'Quan ly loi
@@ -253,7 +292,7 @@ Public Class frmNotepad
 
     Private Sub mnuE_Cut_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Cut.Click, mnu_ct_Cut.Click
         'Code Cut
-
+        rtxtEditor.Cut()
     End Sub
 
     Private Sub mnuE_Copy_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Copy.Click, mnu_ct_Copy.Click
