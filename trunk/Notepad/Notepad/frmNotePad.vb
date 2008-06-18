@@ -9,7 +9,11 @@ Public Class frmNotepad
     Private pgs_PageSettings As PageSettings
     Private prs_PrinterSettings As PrinterSettings
     Public i As Integer
-    Private canc As Integer
+    '(Bien luu cac trang thai khi Find reaplace
+    Private s_textFind As String
+    Private s_textReplace As String
+    Private RTF_OptFind As RichTextBoxFinds
+    ')
 
 #Region "Hieu ung bong mo"
     Const CS_DROPSHADOW = &H20000
@@ -25,6 +29,10 @@ Public Class frmNotepad
 
     Private Sub frmNotepad_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         'Khoi tao cac bien
+        s_textFind = ""
+        s_textReplace = ""
+        RTF_OptFind = RichTextBoxFinds.None
+
         pgs_PageSettings = New System.Drawing.Printing.PageSettings
         prs_PrinterSettings = New System.Drawing.Printing.PrinterSettings
 
@@ -35,44 +43,26 @@ Public Class frmNotepad
         rtxtEditor.WordWrap = mnuFm_Word_Wrap.CheckState = CheckState.Checked
         statusbar.Visible = mnuV_Status_Bar.CheckState = CheckState.Checked
 
+        'Doi menu 
+        ChangeMainMenu()
     End Sub
 
-    Private Sub rtxtEditor_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles rtxtEditor.Click
-        Dim p As New Point
-        p.X = System.Windows.Forms.Cursor.Position.X
-        p.Y = System.Windows.Forms.Cursor.Position.Y
-        i = rtxtEditor.GetCharIndexFromPosition(p)
+    Private Sub statusbar_VisibleChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles statusbar.VisibleChanged
+        'Hien thi Ln Col
+        GetLnCol()
     End Sub
 
+    Private Sub rtxtEditor_KeyUp(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles rtxtEditor.KeyUp
+        'Hien thi Ln Col
+        If statusbar.Visible Then
+            GetLnCol()
+        End If
+    End Sub
     Private Sub rtxtEditor_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rtxtEditor.TextChanged
-        Dim p As New Point
-        p.X = System.Windows.Forms.Cursor.Position.X
-        p.Y = System.Windows.Forms.Cursor.Position.Y
-        i = rtxtEditor.GetCharIndexFromPosition(p)
+        'Enable/Disable cac menu
+        ChangeMainMenu()
     End Sub
 
-    Private Sub mainMenu_MenuActivate(ByVal sender As Object, ByVal e As System.EventArgs) Handles mainMenu.MenuActivate
-        Try
-            Dim b_isSelectText As Boolean
-            'Xet xem co chon text nao hay khong
-            b_isSelectText = rtxtEditor.SelectionLength > 0
-            'Neu khong chon thi Disable cac menu Cut,Copy,Delete ... va nguoc lai
-            mnuE_Copy.Enabled = b_isSelectText
-            mnuE_Cut.Enabled = b_isSelectText
-            mnuE_Delete.Enabled = b_isSelectText
-
-            mnuE_Find.Enabled = rtxtEditor.TextLength > 0
-            mnuE_Find_Next.Enabled = rtxtEditor.TextLength > 0
-
-            mnuE_Replace.Enabled = rtxtEditor.TextLength > 0
-
-            mnuE_Go_to.Enabled = rtxtEditor.WordWrap
-
-            mnuV_Status_Bar.Enabled = mnuFm_Word_Wrap.CheckState = CheckState.Unchecked
-        Catch ex As Exception
-            'Khong can quan ly loi
-        End Try
-    End Sub
     Private Sub frmNotepad_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
         Try
             'Kiem tra luu
@@ -93,6 +83,7 @@ Public Class frmNotepad
                 Select Case i_ans
                     Case MsgBoxResult.Cancel
                         e.Cancel = True
+                        Exit Sub
                     Case MsgBoxResult.No
                         e.Cancel = False
                     Case MsgBoxResult.Yes
@@ -113,47 +104,122 @@ Public Class frmNotepad
 #Region "File"
     Private Sub mnuF_New_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuF_New.Click
         'Code New
-        If (rtxtEditor.Text <> "") Then
-            Dim s_msg As String
-            Dim i_ans As Integer
-            Dim s_filename As String
-            ' Dim Canc As New SaveFileDialog
-            If rtxtEditor.Tag Is Nothing Then
-                s_filename = "Untitled"
-            Else
-                s_filename = rtxtEditor.Tag.Substring(rtxtEditor.Tag.LastIndexOf("\") + 1).Trim
-            End If
-            s_msg = "The text in the " & s_filename & " file has changed." & Chr(13) & Chr(13) & _
-                    "Do you want to save the changes?"
-            i_ans = (MsgBox(s_msg, MsgBoxStyle.Exclamation Or MsgBoxStyle.YesNoCancel, Application.ProductName))
-            Select Case i_ans
-                Case MsgBoxResult.Cancel
-                    Return
-                Case MsgBoxResult.No
-                    rtxtEditor.Text = ""
-                Case MsgBoxResult.Yes
+        'If (rtxtEditor.Text <> "") Then
+        '    Dim s_msg As String
+        '    Dim i_ans As Integer
+        '    Dim s_filename As String
+        '    ' Dim Canc As New SaveFileDialog
+        '    If rtxtEditor.Tag Is Nothing Then
+        '        s_filename = "Untitled"
+        '    Else
+        '        s_filename = rtxtEditor.Tag.Substring(rtxtEditor.Tag.LastIndexOf("\") + 1).Trim
+        '    End If
 
-                    '(Xu ly luu 
-                    'Code 
-                    If (rtxtEditor.Tag Is Nothing) Then
+        '    s_msg = "The text in the " & s_filename & " file has changed." & Chr(13) & Chr(13) & _
+        '            "Do you want to save the changes?"
+        '    i_ans = (MsgBox(s_msg, MsgBoxStyle.Exclamation Or MsgBoxStyle.YesNoCancel, Application.ProductName))
+        '    Select Case i_ans
+        '        Case MsgBoxResult.Cancel
+        '            Return
+        '        Case MsgBoxResult.No
+        '            rtxtEditor.Clear()
+        '        Case MsgBoxResult.Yes
+
+        '            '(Xu ly luu 
+        '            'Code 
+        '            If (rtxtEditor.Tag Is Nothing) Then
+        '                mnuF_Save_Click(sender, e)
+        '                If canc = 1 Then
+        '                    Return
+        '                Else : rtxtEditor.Clear()
+        '                End If
+        '                ')
+        '            Else
+        '                SaveToFile(rtxtEditor.Tag)
+        '                rtxtEditor.Clear()
+        '            End If
+        '    End Select
+        'End If
+        'rtxtEditor.Tag = Nothing
+        '(LINH
+        Try
+
+            If rtxtEditor.Modified Then
+                Dim s_filename As String
+                Dim s_msg As String
+                Dim i_ans As Integer
+
+                If rtxtEditor.Tag Is Nothing Then
+                    s_filename = "Untitled"
+                Else
+                    s_filename = rtxtEditor.Tag.Substring(rtxtEditor.Tag.LastIndexOf("\") + 1).Trim
+                End If
+                'Hoi co luu khong
+                s_msg = "The text in the " & s_filename & " file has changed." & Chr(13) & Chr(13) & _
+                        "Do you want to save the changes?"
+                i_ans = (MsgBox(s_msg, MsgBoxStyle.Exclamation Or MsgBoxStyle.YesNoCancel, Application.ProductName))
+                Select Case i_ans
+                    Case MsgBoxResult.Cancel
+                        Return
+                    Case MsgBoxResult.No
+                        rtxtEditor.Clear()
+                    Case MsgBoxResult.Yes
+
                         mnuF_Save_Click(sender, e)
-                        If canc = 1 Then
+                        If rtxtEditor.Modified Then
                             Return
-                        Else : rtxtEditor.Text = ""
                         End If
-                        ')
-                    Else
-                        SaveToFile(rtxtEditor.Tag)
-                        rtxtEditor.Text = ""
-                    End If
-            End Select
-        End If
-        rtxtEditor.Tag = Nothing
+                End Select
+            End If
+            'Mo cai moi
+            rtxtEditor.Clear()
+            rtxtEditor.Tag = Nothing
+            'TInh lai Ln , Col
+            GetLnCol()
+            'Doi title cua form
+            Me.Text = "Untitled - " & Application.ProductName
+
+        Catch ex As Exception
+            'Quan ly loi
+            MsgBox(ex.Message)
+        End Try
+        ')
     End Sub
 
     Private Sub mnuF_Open_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuF_Open.Click
         'Code Open
+        '(LINH Chinh neu co thay doi hoi co luu roi moi mo tep
         Try
+            Dim s_filename As String
+            If rtxtEditor.Modified Then
+
+                Dim s_msg As String
+                Dim i_ans As Integer
+
+                If rtxtEditor.Tag Is Nothing Then
+                    s_filename = "Untitled"
+                Else
+                    s_filename = rtxtEditor.Tag.Substring(rtxtEditor.Tag.LastIndexOf("\") + 1).Trim
+                End If
+                'Hoi co luu khong
+                s_msg = "The text in the " & s_filename & " file has changed." & Chr(13) & Chr(13) & _
+                        "Do you want to save the changes?"
+                i_ans = (MsgBox(s_msg, MsgBoxStyle.Exclamation Or MsgBoxStyle.YesNoCancel, Application.ProductName))
+                Select Case i_ans
+                    Case MsgBoxResult.Cancel
+                        Return
+                    Case MsgBoxResult.No
+                        rtxtEditor.Clear()
+                    Case MsgBoxResult.Yes
+
+                        mnuF_Save_Click(sender, e)
+                        If rtxtEditor.Modified Then
+                            Return
+                        End If
+                End Select
+
+            End If
+            'Open file
             Dim frmOpen As New OpenFileDialog
             'Set cac thuoc tinh
             frmOpen.Filter = "Text Documents (*.txt)|*.txt|All files (*.*)|*.*"
@@ -162,7 +228,6 @@ Public Class frmNotepad
             frmOpen.SupportMultiDottedExtensions = True
 
             If frmOpen.ShowDialog() = Windows.Forms.DialogResult.OK Then
-                Dim s_filename As String
                 s_filename = frmOpen.FileName
                 Dim myStream As New StreamReader(s_filename)
 
@@ -175,6 +240,14 @@ Public Class frmNotepad
                 'Dong file
                 myStream.Close()
             End If
+
+        Catch ex As Exception
+            'Quan ly loi
+            MsgBox(ex.Message)
+        End Try
+        ')
+        Try
+            
 
         Catch ex As Exception
             'Quan ly loi
@@ -220,8 +293,10 @@ Public Class frmNotepad
 
             If frmSave.ShowDialog() = Windows.Forms.DialogResult.OK Then
                 SaveToFile(frmSave.FileName)
-                ' UPDATE By KHA
-            Else : canc = 1
+                '(LINHC Bo vi khong can thiet
+                '' UPDATE By KHA
+                'Else : canc = 1
+                ')
             End If
         Catch ex As Exception
             'Quan ly loi
@@ -302,7 +377,8 @@ Public Class frmNotepad
 
     Private Sub mnuE_Paste_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Paste.Click, mnu_ct_Paste.Click
         'Code Paste
-        Paste()
+        rtxtEditor.Paste()
+        'Paste()
     End Sub
 
     Private Sub mnuE_Delete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Delete.Click, mnu_ct_Delete.Click
@@ -312,20 +388,25 @@ Public Class frmNotepad
 
     Private Sub mnuE_Find_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Find.Click
         'Code Find
-        Dim myFind As New frmFind
-        myFind.ShowDialog()
+        frmFind.Owner = Me
+        frmFind.Show()
+        frmFind.txtFind.Text = s_textFind
+        frmFind.txtFind.SelectAll()
     End Sub
     Private Sub mnuE_Find_Next_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Find_Next.Click
         'Code Find Next
-        Dim myFindNext As New frmFind
-        myFindNext.ShowDialog()
+        If s_textFind = "" Then
+            mnuE_Find_Click(sender, e)
+        Else
+            FindNext(s_textFind, RTF_OptFind)
+        End If
+
     End Sub
 
     Private Sub mnuE_Replace_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Replace.Click
         'Code Replace
-        Dim myReplace As New FrmReplace
-        myReplace.ShowDialog()
-
+        FrmReplace.Owner = Me
+        FrmReplace.Show()
     End Sub
 
     Private Sub mnuE_Go_to_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Go_to.Click
@@ -336,7 +417,7 @@ Public Class frmNotepad
 
     Private Sub mnuE_Select_All_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Select_All.Click, mnu_ct_SelectAll.Click
         'Code Select All
-        rtxtEditor.Select(0, rtxtEditor.Text.Length)
+        rtxtEditor.SelectAll()
     End Sub
 
     Private Sub mnuE_Time_Date_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Time_Date.Click
@@ -422,7 +503,7 @@ Public Class frmNotepad
 #End Region
 #Region "Help"
     Private Sub mnuH_Help_Topics_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuH_Help_Topics.Click
-        Help.ShowHelp(Label1, "help/notepad.chm")
+        Help.ShowHelp(Me, "help/notepad.chm")
 
     End Sub
 
@@ -536,6 +617,71 @@ Public Class frmNotepad
         End If
         rtxtEditor.Text = tmp1 & System.Windows.Forms.Clipboard.GetText.ToString & tmp2
     End Sub
+    Private Sub ChangeMainMenu()
+        'Ham nay dung de enable/Disable cac menu Cut, Copy,...
 
+        Try
+            Dim b_En_Dis_able As Boolean
+            'Xet xem co chon text nao hay khong
+            b_En_Dis_able = rtxtEditor.SelectionLength > 0
+            'Neu khong chon thi Disable cac menu Cut,Copy,Delete ... va nguoc lai
+            mnuE_Copy.Enabled = b_En_Dis_able
+            mnuE_Cut.Enabled = b_En_Dis_able
+            mnuE_Delete.Enabled = b_En_Dis_able
+
+
+            'Xet xem co text nao chua
+            b_En_Dis_able = rtxtEditor.TextLength > 0
+            'Neu chua chon thi Disable cac menu Find,Find Next,Replace
+
+            mnuE_Find.Enabled = b_En_Dis_able
+            mnuE_Find_Next.Enabled = b_En_Dis_able
+            mnuE_Replace.Enabled = b_En_Dis_able
+
+
+            'Go tu chi co hieu luc khi o che do Word_Wrap
+            mnuE_Go_to.Enabled = Not rtxtEditor.WordWrap
+
+            'Status_bar chi co hieu luc khi o che do Word_Wrap
+            mnuV_Status_Bar.Enabled = mnuFm_Word_Wrap.CheckState = CheckState.Unchecked
+        Catch ex As Exception
+            'Quan ly loi
+            MsgBox(ex.Message)
+        End Try
+
+    End Sub
+    Private Sub GetLnCol()
+
+        'Lay vi tri hien tai cua con tro 
+        Dim i_ln As Integer
+        Dim i_Col As Integer
+        i_Col = rtxtEditor.SelectionStart + 1
+        i_ln = rtxtEditor.GetLineFromCharIndex(i_Col) + 1
+        i_Col = i_Col - rtxtEditor.GetFirstCharIndexOfCurrentLine()
+        statusbar2.Text = "Ln " & i_ln.ToString & ", Col " & i_Col.ToString
+    End Sub
+    Public Sub FindNext(ByVal s_textFind As String, ByVal RTF_OptFind As RichTextBoxFinds)
+        Dim i_start As Integer
+        Dim i_end As Integer
+
+
+        If RTF_OptFind = RichTextBoxFinds.Reverse Then
+            'Neu la tim nguoc
+            i_start = 0
+            i_end = rtxtEditor.SelectionStart
+        Else
+            'Neu tim xuoi
+            i_start = rtxtEditor.SelectionStart + rtxtEditor.SelectionLength
+            i_end = rtxtEditor.TextLength + 1
+        End If
+
+        i_start = rtxtEditor.Find(s_textFind, i_start, i_end, RTF_OptFind)
+
+        If i_start = -1 Then
+            MsgBox("Can't find """ & s_textFind & """", MsgBoxStyle.Information)
+        Else
+            Me.s_textFind = s_textFind
+        End If
+    End Sub
 #End Region
 End Class

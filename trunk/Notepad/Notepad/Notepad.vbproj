@@ -139,9 +139,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\web_01.gif" />
-    <None Include="Resources\web_02.gif" />
-    <None Include="Resources\web_12.gif" />
     <Content Include="txt.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
