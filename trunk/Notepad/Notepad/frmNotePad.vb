@@ -371,7 +371,9 @@ Public Class frmNotepad
 
     Private Sub mnuE_Copy_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Copy.Click, mnu_ct_Copy.Click
         'Code Copy
-
+        Dim copy As String
+        copy = rtxtEditor.SelectedText.ToString
+        Clipboard.SetText(copy, TextDataFormat.Text)
     End Sub
 
     Private Sub mnuE_Paste_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Paste.Click, mnu_ct_Paste.Click
