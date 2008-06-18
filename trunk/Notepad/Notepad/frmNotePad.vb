@@ -291,7 +291,8 @@ Public Class frmNotepad
 
     Private Sub mnuE_Go_to_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Go_to.Click
         'Code Goto
-
+        Dim myGoto As New FrmGoto
+        myGoto.ShowDialog()
     End Sub
 
     Private Sub mnuE_Select_All_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Select_All.Click, mnu_ct_SelectAll.Click

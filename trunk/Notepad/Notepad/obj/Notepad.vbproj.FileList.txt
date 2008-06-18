@@ -21,3 +21,4 @@ obj\Release\Notepad.pdb
 obj\Debug\Notepad.frmAbout.resources
 obj\Debug\Notepad.frmFind.resources
 obj\Debug\Notepad.FrmReplace.resources
+obj\Debug\Notepad.FrmGoto.resources

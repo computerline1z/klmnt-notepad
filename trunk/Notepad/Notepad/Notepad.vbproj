@@ -63,6 +63,12 @@
     <Compile Include="frmFind.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="FrmGoto.Designer.vb">
+      <DependentUpon>FrmGoto.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmGoto.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmNotePad.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -101,6 +107,10 @@
     <EmbeddedResource Include="frmFind.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmFind.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmGoto.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>FrmGoto.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmNotePad.resx">
       <SubType>Designer</SubType>
