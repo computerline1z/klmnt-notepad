@@ -30,7 +30,7 @@ Partial Class frmAbout
         'PictureBox1
         '
         Me.PictureBox1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PictureBox1.Image = Global.Notepad.My.Resources.Resources.web_01
+        'Me.PictureBox1.Image = Global.Notepad.My.Resources.Resources.web_01
         Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(332, 67)
@@ -49,7 +49,7 @@ Partial Class frmAbout
         'PictureBox2
         '
         Me.PictureBox2.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PictureBox2.Image = Global.Notepad.My.Resources.Resources.web_12
+        'Me.PictureBox2.Image = Global.Notepad.My.Resources.Resources.web_12
         Me.PictureBox2.Location = New System.Drawing.Point(0, 67)
         Me.PictureBox2.Name = "PictureBox2"
         Me.PictureBox2.Size = New System.Drawing.Size(87, 177)

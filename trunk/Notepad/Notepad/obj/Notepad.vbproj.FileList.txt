@@ -18,3 +18,5 @@ obj\Release\Notepad.vbproj.GenerateResource.Cache
 obj\Release\Notepad.exe
 obj\Release\Notepad.xml
 obj\Release\Notepad.pdb
+obj\Debug\Notepad.frmAbout.resources
+obj\Debug\Notepad.frmFind.resources
