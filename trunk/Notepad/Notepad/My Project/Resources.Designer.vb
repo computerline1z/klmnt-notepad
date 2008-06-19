@@ -59,5 +59,26 @@ Namespace My.Resources
                 resourceCulture = value
             End Set
         End Property
+        
+        Friend ReadOnly Property _00154() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("00154", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        Friend ReadOnly Property m0() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("m0", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        Friend ReadOnly Property txt() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("txt", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
     End Module
 End Namespace

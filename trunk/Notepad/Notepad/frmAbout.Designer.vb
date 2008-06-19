@@ -1,4 +1,4 @@
-<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+ï»¿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
 Partial Class frmAbout
     Inherits System.Windows.Forms.Form
 
@@ -11,6 +11,8 @@ Partial Class frmAbout
         MyBase.Dispose(disposing)
     End Sub
 
+    Friend WithEvents TableLayoutPanel As System.Windows.Forms.TableLayoutPanel
+
     'Required by the Windows Form Designer
     Private components As System.ComponentModel.IContainer
 
@@ -19,82 +21,295 @@ Partial Class frmAbout
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox
-        Me.cmdOK = New System.Windows.Forms.Button
+        Me.components = New System.ComponentModel.Container
+        Me.TableLayoutPanel = New System.Windows.Forms.TableLayoutPanel
+        Me.LinkLabel5 = New System.Windows.Forms.LinkLabel
+        Me.LinkLabel4 = New System.Windows.Forms.LinkLabel
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox
+        Me.Panel1 = New System.Windows.Forms.Panel
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox
+        Me.LinkLabel1 = New System.Windows.Forms.LinkLabel
+        Me.Panel2 = New System.Windows.Forms.Panel
         Me.PictureBox2 = New System.Windows.Forms.PictureBox
-        Me.RichTextBox1 = New System.Windows.Forms.RichTextBox
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox
+        Me.TextBox2 = New System.Windows.Forms.TextBox
+        Me.Button1 = New System.Windows.Forms.Button
+        Me.LinkLabel2 = New System.Windows.Forms.LinkLabel
+        Me.LinkLabel3 = New System.Windows.Forms.LinkLabel
+        Me.LinkLabel6 = New System.Windows.Forms.LinkLabel
+        Me.Label1 = New System.Windows.Forms.Label
+        Me.Label2 = New System.Windows.Forms.Label
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.TableLayoutPanel.SuspendLayout()
+        Me.Panel1.SuspendLayout()
+        Me.Panel2.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'PictureBox1
+        'TableLayoutPanel
         '
-        Me.PictureBox1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(332, 67)
-        Me.PictureBox1.TabIndex = 0
-        Me.PictureBox1.TabStop = False
+        Me.TableLayoutPanel.ColumnCount = 3
+        Me.TableLayoutPanel.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.547771!))
+        Me.TableLayoutPanel.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 97.45223!))
+        Me.TableLayoutPanel.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 205.0!))
+        Me.TableLayoutPanel.Controls.Add(Me.LinkLabel5, 2, 7)
+        Me.TableLayoutPanel.Controls.Add(Me.LinkLabel4, 1, 7)
+        Me.TableLayoutPanel.Controls.Add(Me.GroupBox2, 1, 5)
+        Me.TableLayoutPanel.Controls.Add(Me.Panel1, 1, 2)
+        Me.TableLayoutPanel.Controls.Add(Me.LinkLabel1, 1, 3)
+        Me.TableLayoutPanel.Controls.Add(Me.Panel2, 1, 4)
+        Me.TableLayoutPanel.Controls.Add(Me.Button1, 2, 8)
+        Me.TableLayoutPanel.Controls.Add(Me.LinkLabel2, 2, 6)
+        Me.TableLayoutPanel.Controls.Add(Me.LinkLabel3, 1, 8)
+        Me.TableLayoutPanel.Controls.Add(Me.LinkLabel6, 1, 6)
+        Me.TableLayoutPanel.Controls.Add(Me.Label1, 1, 0)
+        Me.TableLayoutPanel.Controls.Add(Me.Label2, 1, 1)
+        Me.TableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel.Location = New System.Drawing.Point(9, 9)
+        Me.TableLayoutPanel.Name = "TableLayoutPanel"
+        Me.TableLayoutPanel.RowCount = 9
+        Me.TableLayoutPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 17.0!))
+        Me.TableLayoutPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23.0!))
+        Me.TableLayoutPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8.0!))
+        Me.TableLayoutPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 14.0!))
+        Me.TableLayoutPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 257.0!))
+        Me.TableLayoutPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8.0!))
+        Me.TableLayoutPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 18.0!))
+        Me.TableLayoutPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 15.0!))
+        Me.TableLayoutPanel.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 17.0!))
+        Me.TableLayoutPanel.Size = New System.Drawing.Size(406, 378)
+        Me.TableLayoutPanel.TabIndex = 0
         '
-        'cmdOK
+        'LinkLabel5
         '
-        Me.cmdOK.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.cmdOK.Location = New System.Drawing.Point(252, 209)
-        Me.cmdOK.Name = "cmdOK"
-        Me.cmdOK.Size = New System.Drawing.Size(68, 23)
-        Me.cmdOK.TabIndex = 3
-        Me.cmdOK.Text = "OK"
-        Me.cmdOK.UseVisualStyleBackColor = True
+        Me.LinkLabel5.AutoSize = True
+        Me.LinkLabel5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LinkLabel5.Location = New System.Drawing.Point(203, 345)
+        Me.LinkLabel5.Name = "LinkLabel5"
+        Me.LinkLabel5.Size = New System.Drawing.Size(129, 15)
+        Me.LinkLabel5.TabIndex = 11
+        Me.LinkLabel5.TabStop = True
+        Me.LinkLabel5.Text = "nhocga@gmail.com"
+        Me.LinkLabel5.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'LinkLabel4
+        '
+        Me.LinkLabel4.AutoSize = True
+        Me.LinkLabel4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LinkLabel4.Location = New System.Drawing.Point(8, 345)
+        Me.LinkLabel4.Name = "LinkLabel4"
+        Me.LinkLabel4.Size = New System.Drawing.Size(149, 15)
+        Me.LinkLabel4.TabIndex = 11
+        Me.LinkLabel4.TabStop = True
+        Me.LinkLabel4.Text = "dhuynhmai@gmail.com"
+        Me.LinkLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'GroupBox2
+        '
+        Me.TableLayoutPanel.SetColumnSpan(Me.GroupBox2, 2)
+        Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupBox2.Location = New System.Drawing.Point(8, 322)
+        Me.GroupBox2.Name = "GroupBox2"
+        Me.GroupBox2.Size = New System.Drawing.Size(395, 2)
+        Me.GroupBox2.TabIndex = 7
+        Me.GroupBox2.TabStop = False
+        '
+        'Panel1
+        '
+        Me.TableLayoutPanel.SetColumnSpan(Me.Panel1, 2)
+        Me.Panel1.Controls.Add(Me.GroupBox1)
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel1.Location = New System.Drawing.Point(8, 43)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(395, 2)
+        Me.Panel1.TabIndex = 5
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupBox1.Location = New System.Drawing.Point(0, 0)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(395, 2)
+        Me.GroupBox1.TabIndex = 3
+        Me.GroupBox1.TabStop = False
+        '
+        'LinkLabel1
+        '
+        Me.LinkLabel1.AutoSize = True
+        Me.TableLayoutPanel.SetColumnSpan(Me.LinkLabel1, 2)
+        Me.LinkLabel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LinkLabel1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LinkLabel1.Location = New System.Drawing.Point(8, 48)
+        Me.LinkLabel1.Name = "LinkLabel1"
+        Me.LinkLabel1.Size = New System.Drawing.Size(395, 14)
+        Me.LinkLabel1.TabIndex = 4
+        Me.LinkLabel1.TabStop = True
+        Me.LinkLabel1.Text = "http://code.google.com/p/klmnt-notepad/"
+        Me.LinkLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'Panel2
+        '
+        Me.TableLayoutPanel.SetColumnSpan(Me.Panel2, 2)
+        Me.Panel2.Controls.Add(Me.PictureBox2)
+        Me.Panel2.Controls.Add(Me.PictureBox1)
+        Me.Panel2.Controls.Add(Me.TextBox2)
+        Me.Panel2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Panel2.Location = New System.Drawing.Point(8, 65)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(395, 251)
+        Me.Panel2.TabIndex = 6
         '
         'PictureBox2
         '
-        Me.PictureBox2.Dock = System.Windows.Forms.DockStyle.Left
-        Me.PictureBox2.Location = New System.Drawing.Point(0, 67)
+        Me.PictureBox2.BackColor = System.Drawing.Color.White
+        Me.PictureBox2.BackgroundImage = Global.Notepad.My.Resources.Resources.m0
+        Me.PictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.PictureBox2.Location = New System.Drawing.Point(288, 141)
         Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(87, 177)
-        Me.PictureBox2.TabIndex = 4
+        Me.PictureBox2.Size = New System.Drawing.Size(110, 110)
+        Me.PictureBox2.TabIndex = 2
         Me.PictureBox2.TabStop = False
         '
-        'RichTextBox1
+        'PictureBox1
         '
-        Me.RichTextBox1.BackColor = System.Drawing.Color.OldLace
-        Me.RichTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.RichTextBox1.BulletIndent = 3
-        Me.RichTextBox1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.RichTextBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.RichTextBox1.Location = New System.Drawing.Point(87, 67)
-        Me.RichTextBox1.Margin = New System.Windows.Forms.Padding(10)
-        Me.RichTextBox1.Name = "RichTextBox1"
-        Me.RichTextBox1.Size = New System.Drawing.Size(245, 177)
-        Me.RichTextBox1.TabIndex = 6
-        Me.RichTextBox1.Text = "KLMNT ® Notepad" & Global.Microsoft.VisualBasic.ChrW(10) & "Version 1.0 " & Global.Microsoft.VisualBasic.ChrW(10) & "Copyright © KLMNT Group" & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(10) & "Contact: klmnt@gmail.com"
+        Me.PictureBox1.BackColor = System.Drawing.Color.White
+        Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.PictureBox1.Image = Global.Notepad.My.Resources.Resources._00154
+        Me.PictureBox1.Location = New System.Drawing.Point(3, 0)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(51, 70)
+        Me.PictureBox1.TabIndex = 1
+        Me.PictureBox1.TabStop = False
+        '
+        'TextBox2
+        '
+        Me.TextBox2.BackColor = System.Drawing.Color.White
+        Me.TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TextBox2.ForeColor = System.Drawing.SystemColors.HotTrack
+        Me.TextBox2.Location = New System.Drawing.Point(0, 0)
+        Me.TextBox2.Multiline = True
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.Size = New System.Drawing.Size(395, 251)
+        Me.TextBox2.TabIndex = 0
+        Me.TextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(203, 363)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(13, 12)
+        Me.Button1.TabIndex = 11
+        Me.Button1.Text = "x"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'LinkLabel2
+        '
+        Me.LinkLabel2.AutoSize = True
+        Me.LinkLabel2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LinkLabel2.Location = New System.Drawing.Point(203, 327)
+        Me.LinkLabel2.Name = "LinkLabel2"
+        Me.LinkLabel2.Size = New System.Drawing.Size(134, 16)
+        Me.LinkLabel2.TabIndex = 10
+        Me.LinkLabel2.TabStop = True
+        Me.LinkLabel2.Text = "kimtrucd@gmail.com"
+        Me.LinkLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'LinkLabel3
+        '
+        Me.LinkLabel3.AutoSize = True
+        Me.LinkLabel3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LinkLabel3.Location = New System.Drawing.Point(8, 360)
+        Me.LinkLabel3.Name = "LinkLabel3"
+        Me.LinkLabel3.Size = New System.Drawing.Size(157, 16)
+        Me.LinkLabel3.TabIndex = 11
+        Me.LinkLabel3.TabStop = True
+        Me.LinkLabel3.Text = "ngahuyen69@gmail.com"
+        Me.LinkLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'LinkLabel6
+        '
+        Me.LinkLabel6.AutoSize = True
+        Me.LinkLabel6.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LinkLabel6.Location = New System.Drawing.Point(8, 327)
+        Me.LinkLabel6.Name = "LinkLabel6"
+        Me.LinkLabel6.Size = New System.Drawing.Size(168, 16)
+        Me.LinkLabel6.TabIndex = 11
+        Me.LinkLabel6.TabStop = True
+        Me.LinkLabel6.Text = "linhhonglecao@gmail.com"
+        Me.LinkLabel6.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.TableLayoutPanel.SetColumnSpan(Me.Label1, 2)
+        Me.Label1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(8, 0)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(395, 17)
+        Me.Label1.TabIndex = 1
+        Me.Label1.Text = "HKLMNT NodePad"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.TableLayoutPanel.SetColumnSpan(Me.Label2, 2)
+        Me.Label2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.Location = New System.Drawing.Point(8, 17)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(395, 23)
+        Me.Label2.TabIndex = 2
+        Me.Label2.Text = "Copyright Â© 2008-2009 KLMNT Group"
+        '
+        'Timer1
+        '
+        Me.Timer1.Enabled = True
+        Me.Timer1.Interval = 300
         '
         'frmAbout
         '
-        Me.AcceptButton = Me.cmdOK
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.CancelButton = Me.cmdOK
-        Me.ClientSize = New System.Drawing.Size(332, 244)
-        Me.Controls.Add(Me.cmdOK)
-        Me.Controls.Add(Me.RichTextBox1)
-        Me.Controls.Add(Me.PictureBox2)
-        Me.Controls.Add(Me.PictureBox1)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
+        Me.BackColor = System.Drawing.SystemColors.InactiveCaptionText
+        Me.ClientSize = New System.Drawing.Size(424, 396)
+        Me.Controls.Add(Me.TableLayoutPanel)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "frmAbout"
-        Me.ShowIcon = False
+        Me.Padding = New System.Windows.Forms.Padding(9)
         Me.ShowInTaskbar = False
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "About Notepad"
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
+        Me.Text = "AboutBox1"
+        Me.TableLayoutPanel.ResumeLayout(False)
+        Me.TableLayoutPanel.PerformLayout()
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel2.ResumeLayout(False)
+        Me.Panel2.PerformLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
+    Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
+    Friend WithEvents LinkLabel1 As System.Windows.Forms.LinkLabel
+    Friend WithEvents Panel1 As System.Windows.Forms.Panel
+    Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
+    Friend WithEvents Panel2 As System.Windows.Forms.Panel
+    Friend WithEvents Timer1 As System.Windows.Forms.Timer
+    Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
+    Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents LinkLabel2 As System.Windows.Forms.LinkLabel
+    Friend WithEvents LinkLabel6 As System.Windows.Forms.LinkLabel
+    Friend WithEvents LinkLabel5 As System.Windows.Forms.LinkLabel
+    Friend WithEvents LinkLabel4 As System.Windows.Forms.LinkLabel
+    Friend WithEvents LinkLabel3 As System.Windows.Forms.LinkLabel
+    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
-    Friend WithEvents cmdOK As System.Windows.Forms.Button
     Friend WithEvents PictureBox2 As System.Windows.Forms.PictureBox
-    Friend WithEvents RichTextBox1 As System.Windows.Forms.RichTextBox
+
 End Class

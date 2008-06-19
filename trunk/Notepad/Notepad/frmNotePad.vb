@@ -79,7 +79,6 @@ Public Class frmNotepad
     End Sub
 
     Private Sub rtxtEditor_DragDrop(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles rtxtEditor.DragDrop
-        MsgBox("A")
 
     End Sub
 
@@ -89,7 +88,7 @@ Public Class frmNotepad
             GetLnCol()
         End If
     End Sub
-    Private Sub rtxtEditor_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rtxtEditor.TextChanged
+    Private Sub rtxtEditor_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rtxtEditor.TextChanged, rtxtEditor.SelectionChanged
         'Enable/Disable cac menu
         ChangeMainMenu()
     End Sub
@@ -431,7 +430,7 @@ Public Class frmNotepad
 
     Private Sub mnuE_Delete_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Delete.Click, mnu_ct_Delete.Click
         'Code Delete
-
+        rtxtEditor.SelectedText = ""
     End Sub
 
     Private Sub mnuE_Find_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Find.Click
@@ -597,7 +596,7 @@ Public Class frmNotepad
     End Sub
 
     Private Sub mnuH_About_Notepad_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuH_About_Notepad.Click
-        Dim f As New frmAbout
+        Dim f As New frmAbout 'frmAbout
         f.ShowDialog()
 
     End Sub
@@ -672,12 +671,14 @@ Public Class frmNotepad
         If speed = 0 Then
             End
         End If
-        timerClose.Enabled = True
+
         'Don tat cac cac form con truoc
         Dim frmChild As Form
         For Each frmChild In Me.OwnedForms
             frmChild.Dispose()
         Next
+
+        timerClose.Enabled = True
 
         Me.WindowState = FormWindowState.Normal
 

@@ -118,8 +118,8 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="frmAbout.resx">
-      <SubType>Designer</SubType>
       <DependentUpon>frmAbout.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmFind.resx">
       <SubType>Designer</SubType>
@@ -158,6 +158,9 @@
     <None Include="Notepad_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\txt.ico" />
+    <None Include="Resources\00154.gif" />
+    <None Include="Resources\m0.jpg" />
     <Content Include="txt.ico" />
   </ItemGroup>
   <ItemGroup>
