@@ -1,7 +1,21 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" UseMySettingsClassName="true">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="My" GeneratedClassName="MySettings" UseMySettingsClassName="true">
+  <Profiles />
+  <Settings>
+    <Setting Name="Font" Type="System.Drawing.Font" Scope="Application">
+      <Value Profile="(Default)">Arial, 12pt</Value>
+    </Setting>
+    <Setting Name="prs_PrinterSettings" Type="System.Drawing.Printing.PrinterSettings" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="wordwap" Type="System.Windows.Forms.CheckState" Scope="Application">
+      <Value Profile="(Default)">Unchecked</Value>
+    </Setting>
+    <Setting Name="statusbar" Type="System.Windows.Forms.CheckState" Scope="Application">
+      <Value Profile="(Default)">Checked</Value>
+    </Setting>
+    <Setting Name="pgs_PageSettings" Type="System.Drawing.Printing.PageSettings" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
 </SettingsFile>

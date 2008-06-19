@@ -13,7 +13,7 @@ Public Class frmNotepad
     Private s_textFind As String
     Private s_textReplace As String
     Private RTF_OptFind As RichTextBoxFinds
-    ')
+    Private speed As Single     ')
 
 #Region "Hieu ung bong mo"
     Const CS_DROPSHADOW = &H20000
@@ -26,30 +26,61 @@ Public Class frmNotepad
     End Property
 #End Region
 #Region "Cac su kien tren form"
-
     Private Sub frmNotepad_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        Dim sFile As String
+        ' Lay tham so truyen vao khi Open With/Double clck
+        sFile = Command$()
+        If sFile <> "" Then
+            'Mo file
+            Dim myStream As New StreamReader(sFile)
+
+            'Dua noi dung vao
+            rtxtEditor.Text = myStream.ReadToEnd
+            'Luu file da mo
+            rtxtEditor.Tag = sFile
+            'Gan lai title cua form
+            Me.Text = sFile.Substring(sFile.LastIndexOf("\") + 1) & " - " & Application.ProductName
+            'Dong file
+            myStream.Close()
+        End If
+
         'Khoi tao cac bien
+        speed = 0.01
         s_textFind = ""
         s_textReplace = ""
         RTF_OptFind = RichTextBoxFinds.None
 
-        pgs_PageSettings = New System.Drawing.Printing.PageSettings
-        prs_PrinterSettings = New System.Drawing.Printing.PrinterSettings
+        pgs_PageSettings = My.Settings.pgs_PageSettings
+        'New System.Drawing.Printing.PageSettings
+        prs_PrinterSettings = My.Settings.prs_PrinterSettings 'New System.Drawing.Printing.PrinterSettings
+
 
         'Khoi tao cac trang thai cua control
-        mnuFm_Word_Wrap.CheckState = CheckState.Unchecked
-        mnuV_Status_Bar.CheckState = CheckState.Checked
+        '        mnuFm_Word_Wrap.CheckState = CheckState.Unchecked
+        '        mnuV_Status_Bar.CheckState = CheckState.Checked
 
         rtxtEditor.WordWrap = mnuFm_Word_Wrap.CheckState = CheckState.Checked
         statusbar.Visible = mnuV_Status_Bar.CheckState = CheckState.Checked
 
+
         'Doi menu 
         ChangeMainMenu()
+        '
+
+        MyAppDefault("KLMNT Nodepad", Chr(34) & Application.ExecutablePath _
+        & Chr(34) & " " & Chr(34) & "%1" & Chr(34), ".txt")
+
+        rtxtEditor.AllowDrop = True
     End Sub
 
     Private Sub statusbar_VisibleChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles statusbar.VisibleChanged
         'Hien thi Ln Col
         GetLnCol()
+    End Sub
+
+    Private Sub rtxtEditor_DragDrop(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles rtxtEditor.DragDrop
+        MsgBox("A")
+
     End Sub
 
     Private Sub rtxtEditor_KeyUp(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles rtxtEditor.KeyUp
@@ -84,23 +115,40 @@ Public Class frmNotepad
                     Case MsgBoxResult.Cancel
                         e.Cancel = True
                         Exit Sub
-                    Case MsgBoxResult.No
-                        e.Cancel = False
                     Case MsgBoxResult.Yes
-                        e.Cancel = False
+                        'e.Cancel = True
                         '(Xu ly luu 
                         'Code 
                         mnuF_Save_Click(sender, e)
                         ')
                 End Select
             End If
-            coolCloseForm(Me, 1.1)
+            e.Cancel = True
+            coolCloseForm()
         Catch ex As Exception
             'Quan ly loi khi ket thuc chuong trinh
             MsgBox(ex.Message)
         End Try
     End Sub
 
+    Private Sub timerClose_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles timerClose.Tick
+        If Me.Opacity < 0.1 Then
+            My.Settings.Upgrade()
+            Me.Dispose()
+        End If
+        Application.DoEvents()
+        Me.Opacity = Me.Opacity - speed
+
+    End Sub
+    Private Sub timerLoad_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles timerLoad.Tick
+        Application.DoEvents()
+        If (Me.Opacity >= 1) Then
+            Me.Opacity = 1
+            timerLoad.Enabled = False
+        Else
+            Me.Opacity = Me.Opacity + speed
+        End If
+    End Sub
 #Region "File"
     Private Sub mnuF_New_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuF_New.Click
         'Code New
@@ -530,6 +578,17 @@ Public Class frmNotepad
             'Khong can quan ly loi
         End Try
     End Sub
+
+    Private Sub mnuV_AlwaysOnTop_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuV_AlwaysOnTop.Click
+        'Code Always On TOp
+        Try
+            'Check/Uncheck
+            mnuV_AlwaysOnTop.CheckState = (mnuV_AlwaysOnTop.CheckState + 1) Mod 2
+            Me.TopMost = mnuV_AlwaysOnTop.CheckState = CheckState.Checked
+        Catch ex As Exception
+            'Khong can quan ly loi
+        End Try
+    End Sub
 #End Region
 #Region "Help"
     Private Sub mnuH_Help_Topics_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuH_Help_Topics.Click
@@ -609,25 +668,19 @@ Public Class frmNotepad
             MsgBox(ex.Message)
         End Try
     End Sub
-    Public Sub coolCloseForm(ByVal closeForm As Form, ByVal speed As Single)
-
+    Public Sub coolCloseForm()
         If speed = 0 Then
-            MsgBox("Speed cannot zero")
-            Exit Sub
+            End
         End If
-
-        On Error Resume Next
+        timerClose.Enabled = True
         'Don tat cac cac form con truoc
         Dim frmChild As Form
-        For Each frmChild In closeForm.OwnedForms
+        For Each frmChild In Me.OwnedForms
             frmChild.Dispose()
         Next
-        'Form mo dan roi dong Cho giong Vista :)
-        Do Until closeForm.Opacity < 0.1
-            Application.DoEvents()
-            closeForm.Opacity = closeForm.Opacity / speed
-        Loop
-        closeForm.Dispose()
+
+        Me.WindowState = FormWindowState.Normal
+
     End Sub
     Private Sub document_PrintPage(ByVal sender As Object, _
          ByVal e As System.Drawing.Printing.PrintPageEventArgs) _
@@ -733,5 +786,18 @@ Public Class frmNotepad
     Public Sub GoToLine(ByVal i_line As Long)
         rtxtEditor.SelectionStart = rtxtEditor.GetFirstCharIndexFromLine(i_line)
     End Sub
+    Public Sub MyAppDefault(ByVal sAppName As String, ByVal sEXE As String, ByVal sExt As String)
+        Try
+            My.Computer.Registry.ClassesRoot.CreateSubKey(sExt)
+
+            My.Computer.Registry.SetValue("HKEY_CLASSES_ROOT\" & sExt, "", sAppName)
+
+            My.Computer.Registry.ClassesRoot.CreateSubKey(sAppName & "\Shell\Open\Command")
+            My.Computer.Registry.SetValue("HKEY_CLASSES_ROOT\" & sAppName & "\Shell\Open\Command", sEXE, "")
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+    End Sub
 #End Region
+
 End Class

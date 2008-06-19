@@ -53,6 +53,49 @@ Namespace My
                 Return defaultInstance
             End Get
         End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Arial, 12pt")>  _
+        Public ReadOnly Property Font() As Global.System.Drawing.Font
+            Get
+                Return CType(Me("Font"),Global.System.Drawing.Font)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property prs_PrinterSettings() As Global.System.Drawing.Printing.PrinterSettings
+            Get
+                Return CType(Me("prs_PrinterSettings"),Global.System.Drawing.Printing.PrinterSettings)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Unchecked")>  _
+        Public ReadOnly Property wordwap() As Global.System.Windows.Forms.CheckState
+            Get
+                Return CType(Me("wordwap"),Global.System.Windows.Forms.CheckState)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Checked")>  _
+        Public ReadOnly Property statusbar() As Global.System.Windows.Forms.CheckState
+            Get
+                Return CType(Me("statusbar"),Global.System.Windows.Forms.CheckState)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public ReadOnly Property pgs_PageSettings() As Global.System.Drawing.Printing.PageSettings
+            Get
+                Return CType(Me("pgs_PageSettings"),Global.System.Drawing.Printing.PageSettings)
+            End Get
+        End Property
     End Class
 End Namespace
 
