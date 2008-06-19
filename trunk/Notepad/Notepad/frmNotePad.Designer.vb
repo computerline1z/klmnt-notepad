@@ -461,7 +461,7 @@ Partial Class frmNotepad
         Me.Name = "frmNotepad"
         Me.Opacity = 0.01
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Unititled - Notepad"
+        Me.Text = "Untitled - Notepad"
         Me.mainMenu.ResumeLayout(False)
         Me.mainMenu.PerformLayout()
         Me.mnu_Context.ResumeLayout(False)
