@@ -1,6 +1,8 @@
 ﻿Imports System.IO
 Imports System.Drawing.Printing
 Imports System.Windows.Forms
+Imports System.Net.Mail
+Imports System.Data.SqlTypes.SqlString
 'Imports System.ComponentModel
 Imports System.Drawing
 Public Class frmNotepad
@@ -292,13 +294,7 @@ Public Class frmNotepad
             MsgBox(ex.Message)
         End Try
         ')
-        Try
-            
-
-        Catch ex As Exception
-            'Quan ly loi
-            MsgBox(ex.Message)
-        End Try
+        
 
     End Sub
 
@@ -412,7 +408,11 @@ Public Class frmNotepad
 
     Private Sub mnuE_Cut_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Cut.Click, mnu_ct_Cut.Click
         'Code Cut
-        rtxtEditor.Cut()
+        '(Mai update
+        Clipboard.SetDataObject(rtxtEditor.SelectedText)
+        rtxtEditor.SelectedText = ""
+        ')
+        ' rtxtEditor.Cut()
     End Sub
 
     Private Sub mnuE_Copy_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Copy.Click, mnu_ct_Copy.Click
@@ -424,7 +424,10 @@ Public Class frmNotepad
 
     Private Sub mnuE_Paste_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Paste.Click, mnu_ct_Paste.Click
         'Code Paste
-        rtxtEditor.Paste()
+        '(Mai update
+
+        rtxtEditor.SelectedText = Clipboard.GetDataObject.GetData(DataFormats.Text)
+        'rtxtEditor.Paste()
         'Paste()
     End Sub
 
@@ -435,10 +438,10 @@ Public Class frmNotepad
 
     Private Sub mnuE_Find_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Find.Click
         'Code Find
-        If FrmReplace.Visible Then
-            FrmReplace.Activate()
-            Exit Sub
-        End If
+        'If FrmReplace.Visible Then
+        '    FrmReplace.Activate()
+        '    Exit Sub
+        'End If
         frmFind.Owner = Me
         frmFind.Show()
         frmFind.Activate()
