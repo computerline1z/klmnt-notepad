@@ -54,47 +54,98 @@ Namespace My
             End Get
         End Property
         
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("Arial, 12pt")>  _
-        Public ReadOnly Property Font() As Global.System.Drawing.Font
+        Public Property Font() As Global.System.Drawing.Font
             Get
                 Return CType(Me("Font"),Global.System.Drawing.Font)
             End Get
+            Set
+                Me("Font") = value
+            End Set
         End Property
         
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public ReadOnly Property prs_PrinterSettings() As Global.System.Drawing.Printing.PrinterSettings
+        Public Property prs_PrinterSettings() As Global.System.Drawing.Printing.PrinterSettings
             Get
                 Return CType(Me("prs_PrinterSettings"),Global.System.Drawing.Printing.PrinterSettings)
             End Get
+            Set
+                Me("prs_PrinterSettings") = value
+            End Set
         End Property
         
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("Unchecked")>  _
-        Public ReadOnly Property wordwap() As Global.System.Windows.Forms.CheckState
+        Public Property wordwap() As Global.System.Windows.Forms.CheckState
             Get
                 Return CType(Me("wordwap"),Global.System.Windows.Forms.CheckState)
             End Get
+            Set
+                Me("wordwap") = value
+            End Set
         End Property
         
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Checked")>  _
-        Public ReadOnly Property statusbar() As Global.System.Windows.Forms.CheckState
-            Get
-                Return CType(Me("statusbar"),Global.System.Windows.Forms.CheckState)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
-        Public ReadOnly Property pgs_PageSettings() As Global.System.Drawing.Printing.PageSettings
+        Public Property pgs_PageSettings() As Global.System.Drawing.Printing.PageSettings
             Get
                 Return CType(Me("pgs_PageSettings"),Global.System.Drawing.Printing.PageSettings)
             End Get
+            Set
+                Me("pgs_PageSettings") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0, 0")>  _
+        Public Property size() As Global.System.Drawing.Size
+            Get
+                Return CType(Me("size"),Global.System.Drawing.Size)
+            End Get
+            Set
+                Me("size") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0, 0")>  _
+        Public Property Location() As Global.System.Drawing.Point
+            Get
+                Return CType(Me("Location"),Global.System.Drawing.Point)
+            End Get
+            Set
+                Me("Location") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Checked")>  _
+        Public Property statusbar() As Global.System.Windows.Forms.CheckState
+            Get
+                Return CType(Me("statusbar"),Global.System.Windows.Forms.CheckState)
+            End Get
+            Set
+                Me("statusbar") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Unchecked")>  _
+        Public Property TopMost() As Global.System.Windows.Forms.CheckState
+            Get
+                Return CType(Me("TopMost"),Global.System.Windows.Forms.CheckState)
+            End Get
+            Set
+                Me("TopMost") = value
+            End Set
         End Property
     End Class
 End Namespace

@@ -112,7 +112,7 @@ Public NotInheritable Class frmAbout
                         .Text = Replace(.Text, sValue, "")
                     End If
                 Case 11
-                    sValue = " -  Đoàn Thi Huỳnh Mai. "
+                    sValue = " -  Đoàn Thị Huỳnh Mai. "
                     If nRatio = 1 Then
                         .Text += vbCrLf.ToString & sValue
                     Else

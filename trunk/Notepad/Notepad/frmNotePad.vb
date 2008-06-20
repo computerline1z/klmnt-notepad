@@ -52,36 +52,36 @@ Public Class frmNotepad
         s_textReplace = ""
         RTF_OptFind = RichTextBoxFinds.None
 
+        'Lay nhung thiet lap lan truoc
         pgs_PageSettings = My.Settings.pgs_PageSettings
-        'New System.Drawing.Printing.PageSettings
         prs_PrinterSettings = My.Settings.prs_PrinterSettings 'New System.Drawing.Printing.PrinterSettings
 
-
-        'Khoi tao cac trang thai cua control
-        '        mnuFm_Word_Wrap.CheckState = CheckState.Unchecked
-        '        mnuV_Status_Bar.CheckState = CheckState.Checked
+        If Me.WindowState = FormWindowState.Normal Then
+            If My.Settings.size <> New Drawing.Size(0, 0) Then
+                Me.Size = My.Settings.size
+            End If
+            'If My.Settings.Location <> New Point(0, 0) Then
+            '    Me.Location = My.Settings.Location
+            'End If
+        End If
 
         rtxtEditor.WordWrap = mnuFm_Word_Wrap.CheckState = CheckState.Checked
         statusbar.Visible = mnuV_Status_Bar.CheckState = CheckState.Checked
 
-
+        mnuV_AlwaysOnTop.CheckState = My.Settings.TopMost
+        Me.TopMost = mnuV_AlwaysOnTop.CheckState = CheckState.Checked
         'Doi menu 
         ChangeMainMenu()
         '
-
+        'Ghi vao Registry de chuong trinh thanh mac dinh cho file txt
         MyAppDefault("KLMNT Nodepad", Chr(34) & Application.ExecutablePath _
         & Chr(34) & " " & Chr(34) & "%1" & Chr(34), ".txt")
 
-        rtxtEditor.AllowDrop = True
     End Sub
 
     Private Sub statusbar_VisibleChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles statusbar.VisibleChanged
         'Hien thi Ln Col
         GetLnCol()
-    End Sub
-
-    Private Sub rtxtEditor_DragDrop(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles rtxtEditor.DragDrop
-
     End Sub
 
     Private Sub rtxtEditor_KeyUp(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles rtxtEditor.KeyUp
@@ -90,6 +90,7 @@ Public Class frmNotepad
             GetLnCol()
         End If
     End Sub
+
     Private Sub rtxtEditor_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles rtxtEditor.TextChanged, rtxtEditor.SelectionChanged
         'Enable/Disable cac menu
         ChangeMainMenu()
@@ -134,13 +135,28 @@ Public Class frmNotepad
 
     Private Sub timerClose_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles timerClose.Tick
         If Me.Opacity < 0.1 Then
-            My.Settings.Upgrade()
+            'Luu lai cac settings
+            My.Settings.statusbar = mnuV_Status_Bar.CheckState
+            My.Settings.wordwap = mnuFm_Word_Wrap.CheckState
+            My.Settings.Font = rtxtEditor.Font
+
+            My.Settings.prs_PrinterSettings = prs_PrinterSettings
+            My.Settings.pgs_PageSettings = pgs_PageSettings
+
+            If Me.WindowState = FormWindowState.Normal Then
+                My.Settings.size = Me.Size
+                My.Settings.Location = Me.Location
+            End If
+
+            My.Settings.TopMost = mnuV_AlwaysOnTop.CheckState
+
             Me.Dispose()
         End If
         Application.DoEvents()
         Me.Opacity = Me.Opacity - speed
 
     End Sub
+
     Private Sub timerLoad_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles timerLoad.Tick
         Application.DoEvents()
         If (Me.Opacity >= 1) Then
@@ -294,8 +310,6 @@ Public Class frmNotepad
             MsgBox(ex.Message)
         End Try
         ')
-        
-
     End Sub
 
     Private Sub mnuF_Save_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuF_Save.Click
@@ -450,6 +464,7 @@ Public Class frmNotepad
         frmFind.txtFind.Text = s_textFind
         frmFind.txtFind.SelectAll()
     End Sub
+
     Private Sub mnuE_Find_Next_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Find_Next.Click
         'Code Find Next
         If FrmReplace.Visible Then
@@ -542,6 +557,12 @@ Public Class frmNotepad
                 mnuV_Status_Bar.CheckState = statusbar.Tag
             End If
 
+            'Go tu chi co hieu luc khi o che do Word_Wrap
+            mnuE_Go_to.Enabled = Not rtxtEditor.WordWrap
+
+            'Status_bar chi co hieu luc khi o che do Word_Wrap
+            mnuV_Status_Bar.Enabled = Not rtxtEditor.WordWrap
+
         Catch ex As Exception
             'Khong can quan ly loi
         End Try
@@ -574,6 +595,7 @@ Public Class frmNotepad
         Try
             'Check/Uncheck
             mnuV_Status_Bar.CheckState = (mnuV_Status_Bar.CheckState + 1) Mod 2
+            'My.Settings.statusbar = mnuV_Status_Bar.CheckState
             statusbar.Visible = mnuV_Status_Bar.CheckState = CheckState.Checked
             statusbar.Tag = mnuV_Status_Bar.CheckState
         Catch ex As Exception
@@ -600,7 +622,16 @@ Public Class frmNotepad
 
     Private Sub mnuH_About_Notepad_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuH_About_Notepad.Click
         Dim f As New frmAbout 'frmAbout
+        Dim b_change_topmost As Boolean
+        f.Owner = Me
+        If Me.TopMost Then
+            b_change_topmost = True
+            Me.TopMost = False
+        End If
         f.ShowDialog()
+        If b_change_topmost Then
+            Me.TopMost = True
+        End If
 
     End Sub
 #End Region
@@ -670,6 +701,7 @@ Public Class frmNotepad
             MsgBox(ex.Message)
         End Try
     End Sub
+
     Public Sub coolCloseForm()
         If speed = 0 Then
             End
@@ -681,11 +713,14 @@ Public Class frmNotepad
             frmChild.Dispose()
         Next
 
+        timerLoad.Enabled = False ' Tranh truong hop vua mo len roi dong => Loop
+
         timerClose.Enabled = True
 
-        Me.WindowState = FormWindowState.Normal
+        'Me.WindowState = FormWindowState.Normal
 
     End Sub
+
     Private Sub document_PrintPage(ByVal sender As Object, _
          ByVal e As System.Drawing.Printing.PrintPageEventArgs) _
               Handles docToPrint.PrintPage
@@ -716,18 +751,13 @@ Public Class frmNotepad
             mnuE_Find_Next.Enabled = b_En_Dis_able
             mnuE_Replace.Enabled = b_En_Dis_able
 
-
-            'Go tu chi co hieu luc khi o che do Word_Wrap
-            mnuE_Go_to.Enabled = Not rtxtEditor.WordWrap
-
-            'Status_bar chi co hieu luc khi o che do Word_Wrap
-            mnuV_Status_Bar.Enabled = mnuFm_Word_Wrap.CheckState = CheckState.Unchecked
         Catch ex As Exception
             'Quan ly loi
             MsgBox(ex.Message)
         End Try
 
     End Sub
+
     Private Sub GetLnCol()
 
         'Lay vi tri hien tai cua con tro 
@@ -738,6 +768,7 @@ Public Class frmNotepad
         i_Col = i_Col - rtxtEditor.GetFirstCharIndexOfCurrentLine()
         statusbar2.Text = "Ln " & i_ln.ToString & ", Col " & i_Col.ToString
     End Sub
+
     Public Sub FindNext(ByVal s_textFind As String, ByVal RTF_OptFind As RichTextBoxFinds)
         Dim i_start As Integer
         Dim i_end As Integer
@@ -760,6 +791,7 @@ Public Class frmNotepad
             Me.s_textFind = s_textFind
         End If
     End Sub
+
     Public Sub FindNReplace(ByVal s_textFind As String, ByVal s_textReplace As String, ByVal RTF_OptFind As RichTextBoxFinds)
         'Thay the chuoi duoc chon
         If rtxtEditor.SelectedText = s_textFind Then
@@ -782,14 +814,17 @@ Public Class frmNotepad
         End If
 
     End Sub
+
     Public Sub ReplaceAll(ByVal s_textFind As String, ByVal s_textReplace As String, ByVal i_Compare As Integer)
         rtxtEditor.Text = Replace(rtxtEditor.Text, s_textFind, s_textReplace, , , i_Compare)
         Me.s_textFind = s_textFind
         Me.s_textReplace = s_textReplace
     End Sub
+
     Public Sub GoToLine(ByVal i_line As Long)
         rtxtEditor.SelectionStart = rtxtEditor.GetFirstCharIndexFromLine(i_line)
     End Sub
+
     Public Sub MyAppDefault(ByVal sAppName As String, ByVal sEXE As String, ByVal sExt As String)
         Try
             My.Computer.Registry.ClassesRoot.CreateSubKey(sExt)
@@ -803,5 +838,4 @@ Public Class frmNotepad
         End Try
     End Sub
 #End Region
-
 End Class
