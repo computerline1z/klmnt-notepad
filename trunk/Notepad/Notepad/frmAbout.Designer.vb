@@ -52,7 +52,7 @@ Partial Class frmAbout
         Me.TableLayoutPanel.ColumnCount = 3
         Me.TableLayoutPanel.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.547771!))
         Me.TableLayoutPanel.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 97.45223!))
-        Me.TableLayoutPanel.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 206.0!))
+        Me.TableLayoutPanel.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 207.0!))
         Me.TableLayoutPanel.Controls.Add(Me.LinkLabel5, 2, 7)
         Me.TableLayoutPanel.Controls.Add(Me.LinkLabel4, 1, 7)
         Me.TableLayoutPanel.Controls.Add(Me.GroupBox2, 1, 5)
@@ -85,7 +85,7 @@ Partial Class frmAbout
         '
         Me.LinkLabel5.AutoSize = True
         Me.LinkLabel5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LinkLabel5.Location = New System.Drawing.Point(202, 345)
+        Me.LinkLabel5.Location = New System.Drawing.Point(201, 345)
         Me.LinkLabel5.Name = "LinkLabel5"
         Me.LinkLabel5.Size = New System.Drawing.Size(129, 15)
         Me.LinkLabel5.TabIndex = 11
@@ -197,7 +197,7 @@ Partial Class frmAbout
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(202, 363)
+        Me.Button1.Location = New System.Drawing.Point(201, 363)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(13, 12)
         Me.Button1.TabIndex = 11
@@ -208,7 +208,7 @@ Partial Class frmAbout
         '
         Me.LinkLabel2.AutoSize = True
         Me.LinkLabel2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LinkLabel2.Location = New System.Drawing.Point(202, 327)
+        Me.LinkLabel2.Location = New System.Drawing.Point(201, 327)
         Me.LinkLabel2.Name = "LinkLabel2"
         Me.LinkLabel2.Size = New System.Drawing.Size(134, 16)
         Me.LinkLabel2.TabIndex = 10

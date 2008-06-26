@@ -19,6 +19,8 @@ Public NotInheritable Class frmAbout
         nCount = 1
         nRatio = 1
 
+        Me.LinkLabel1.Links(0).LinkData = Me.LinkLabel1.Text
+
     End Sub
 
     Private nCount As Integer = 1
@@ -82,7 +84,7 @@ Public NotInheritable Class frmAbout
                     End If
 
                 Case 7
-                    sValue = " Version 1.0.0 "
+                    sValue = " Version " & Application.ProductVersion
                     If nRatio = 1 Then
                         .Text += vbCrLf.ToString & sValue
                     Else
@@ -151,6 +153,13 @@ Public NotInheritable Class frmAbout
         Me.Close()
     End Sub
 
-    Private Sub LinkLabel6_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel6.LinkClicked
+
+
+    Private Sub LinkLabel1_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
+        Dim target As String = CType(e.Link.LinkData, String)
+        If (Nothing <> target) Then
+            System.Diagnostics.Process.Start(target)
+        End If
+
     End Sub
 End Class

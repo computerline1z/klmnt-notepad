@@ -47,14 +47,24 @@ Public Class frmNotepad
         End If
 
         'Khoi tao cac bien
-        speed = 0.01
+        speed = 0.03
         s_textFind = ""
         s_textReplace = ""
         RTF_OptFind = RichTextBoxFinds.None
 
         'Lay nhung thiet lap lan truoc
-        pgs_PageSettings = My.Settings.pgs_PageSettings
-        prs_PrinterSettings = My.Settings.prs_PrinterSettings 'New System.Drawing.Printing.PrinterSettings
+        If Not My.Settings.pgs_PageSettings Is Nothing Then
+            pgs_PageSettings = My.Settings.pgs_PageSettings
+        Else
+            pgs_PageSettings = New Drawing.Printing.PageSettings
+        End If
+        If Not My.Settings.prs_PrinterSettings Is Nothing Then
+            prs_PrinterSettings = My.Settings.prs_PrinterSettings
+        Else
+            prs_PrinterSettings = New System.Drawing.Printing.PrinterSettings
+        End If
+
+
 
         If Me.WindowState = FormWindowState.Normal Then
             If My.Settings.size <> New Drawing.Size(0, 0) Then
@@ -421,27 +431,18 @@ Public Class frmNotepad
     End Sub
 
     Private Sub mnuE_Cut_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Cut.Click, mnu_ct_Cut.Click
-        'Code Cut
-        '(Mai update
-        Clipboard.SetDataObject(rtxtEditor.SelectedText)
-        rtxtEditor.SelectedText = ""
-        ')
-        ' rtxtEditor.Cut()
+        'Code Cut        
+        rtxtEditor.Cut()
     End Sub
 
     Private Sub mnuE_Copy_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Copy.Click, mnu_ct_Copy.Click
-        'Code Copy
-        Dim copy As String
-        copy = rtxtEditor.SelectedText.ToString
-        Clipboard.SetText(copy, TextDataFormat.Text)
+        'Code Copy        
+        rtxtEditor.Copy()
     End Sub
 
     Private Sub mnuE_Paste_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuE_Paste.Click, mnu_ct_Paste.Click
         'Code Paste
-        '(Mai update
-
-        rtxtEditor.SelectedText = Clipboard.GetDataObject.GetData(DataFormats.Text)
-        'rtxtEditor.Paste()
+        rtxtEditor.Paste()
         'Paste()
     End Sub
 
