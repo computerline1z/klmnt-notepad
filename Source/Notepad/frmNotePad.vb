@@ -28,6 +28,13 @@ Public Class frmNotepad
     End Property
 #End Region
 #Region "Cac su kien tren form"
+
+    Private Sub frmNotepad_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
+        If e.KeyCode = Keys.F1 Then
+            mnuH_Help_Topics_Click(Me, Nothing)
+        End If
+    End Sub
+
     Private Sub frmNotepad_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Dim sFile As String
         ' Lay tham so truyen vao khi Open With/Double clck

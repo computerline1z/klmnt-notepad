@@ -102,56 +102,56 @@ Partial Class frmNotepad
         '
         Me.mnuF_New.Name = "mnuF_New"
         Me.mnuF_New.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.N), System.Windows.Forms.Keys)
-        Me.mnuF_New.Size = New System.Drawing.Size(152, 22)
+        Me.mnuF_New.Size = New System.Drawing.Size(163, 22)
         Me.mnuF_New.Text = "&New"
         '
         'mnuF_Open
         '
         Me.mnuF_Open.Name = "mnuF_Open"
         Me.mnuF_Open.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.O), System.Windows.Forms.Keys)
-        Me.mnuF_Open.Size = New System.Drawing.Size(152, 22)
+        Me.mnuF_Open.Size = New System.Drawing.Size(163, 22)
         Me.mnuF_Open.Text = "&Open..."
         '
         'mnuF_Save
         '
         Me.mnuF_Save.Name = "mnuF_Save"
         Me.mnuF_Save.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.S), System.Windows.Forms.Keys)
-        Me.mnuF_Save.Size = New System.Drawing.Size(152, 22)
+        Me.mnuF_Save.Size = New System.Drawing.Size(163, 22)
         Me.mnuF_Save.Text = "&Save"
         '
         'mnuF_Save_as
         '
         Me.mnuF_Save_as.Name = "mnuF_Save_as"
-        Me.mnuF_Save_as.Size = New System.Drawing.Size(152, 22)
+        Me.mnuF_Save_as.Size = New System.Drawing.Size(163, 22)
         Me.mnuF_Save_as.Text = "Save &As..."
         '
         'ToolStripMenuItem1
         '
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(149, 6)
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(160, 6)
         '
         'mnuF_Page_setup
         '
         Me.mnuF_Page_setup.Name = "mnuF_Page_setup"
-        Me.mnuF_Page_setup.Size = New System.Drawing.Size(152, 22)
+        Me.mnuF_Page_setup.Size = New System.Drawing.Size(163, 22)
         Me.mnuF_Page_setup.Text = "Page Set&up..."
         '
         'mnuF_Print
         '
         Me.mnuF_Print.Name = "mnuF_Print"
         Me.mnuF_Print.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.P), System.Windows.Forms.Keys)
-        Me.mnuF_Print.Size = New System.Drawing.Size(152, 22)
+        Me.mnuF_Print.Size = New System.Drawing.Size(163, 22)
         Me.mnuF_Print.Text = "&Print..."
         '
         'ToolStripMenuItem2
         '
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(149, 6)
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(160, 6)
         '
         'mnuF_Exit
         '
         Me.mnuF_Exit.Name = "mnuF_Exit"
-        Me.mnuF_Exit.Size = New System.Drawing.Size(152, 22)
+        Me.mnuF_Exit.Size = New System.Drawing.Size(163, 22)
         Me.mnuF_Exit.Text = "E&xit"
         '
         'mnuEdit
@@ -165,92 +165,92 @@ Partial Class frmNotepad
         '
         Me.mnuE_Undo.Name = "mnuE_Undo"
         Me.mnuE_Undo.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Z), System.Windows.Forms.Keys)
-        Me.mnuE_Undo.Size = New System.Drawing.Size(163, 22)
+        Me.mnuE_Undo.Size = New System.Drawing.Size(174, 22)
         Me.mnuE_Undo.Text = "&Undo"
         '
         'ToolStripMenuItem3
         '
         Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
-        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(160, 6)
+        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(171, 6)
         '
         'mnuE_Cut
         '
         Me.mnuE_Cut.Name = "mnuE_Cut"
         Me.mnuE_Cut.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.X), System.Windows.Forms.Keys)
-        Me.mnuE_Cut.Size = New System.Drawing.Size(163, 22)
+        Me.mnuE_Cut.Size = New System.Drawing.Size(174, 22)
         Me.mnuE_Cut.Text = "Cu&t"
         '
         'mnuE_Copy
         '
         Me.mnuE_Copy.Name = "mnuE_Copy"
         Me.mnuE_Copy.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.C), System.Windows.Forms.Keys)
-        Me.mnuE_Copy.Size = New System.Drawing.Size(163, 22)
+        Me.mnuE_Copy.Size = New System.Drawing.Size(174, 22)
         Me.mnuE_Copy.Text = "&Copy"
         '
         'mnuE_Paste
         '
         Me.mnuE_Paste.Name = "mnuE_Paste"
         Me.mnuE_Paste.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.V), System.Windows.Forms.Keys)
-        Me.mnuE_Paste.Size = New System.Drawing.Size(163, 22)
+        Me.mnuE_Paste.Size = New System.Drawing.Size(174, 22)
         Me.mnuE_Paste.Text = "&Paste"
         '
         'mnuE_Delete
         '
         Me.mnuE_Delete.Name = "mnuE_Delete"
         Me.mnuE_Delete.ShortcutKeys = System.Windows.Forms.Keys.Delete
-        Me.mnuE_Delete.Size = New System.Drawing.Size(163, 22)
+        Me.mnuE_Delete.Size = New System.Drawing.Size(174, 22)
         Me.mnuE_Delete.Text = "De&lete"
         '
         'ToolStripMenuItem4
         '
         Me.ToolStripMenuItem4.Name = "ToolStripMenuItem4"
-        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(160, 6)
+        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(171, 6)
         '
         'mnuE_Find
         '
         Me.mnuE_Find.Name = "mnuE_Find"
         Me.mnuE_Find.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.F), System.Windows.Forms.Keys)
-        Me.mnuE_Find.Size = New System.Drawing.Size(163, 22)
+        Me.mnuE_Find.Size = New System.Drawing.Size(174, 22)
         Me.mnuE_Find.Text = "&Find..."
         '
         'mnuE_Find_Next
         '
         Me.mnuE_Find_Next.Name = "mnuE_Find_Next"
         Me.mnuE_Find_Next.ShortcutKeys = System.Windows.Forms.Keys.F3
-        Me.mnuE_Find_Next.Size = New System.Drawing.Size(163, 22)
+        Me.mnuE_Find_Next.Size = New System.Drawing.Size(174, 22)
         Me.mnuE_Find_Next.Text = "Find &Next"
         '
         'mnuE_Replace
         '
         Me.mnuE_Replace.Name = "mnuE_Replace"
         Me.mnuE_Replace.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.H), System.Windows.Forms.Keys)
-        Me.mnuE_Replace.Size = New System.Drawing.Size(163, 22)
+        Me.mnuE_Replace.Size = New System.Drawing.Size(174, 22)
         Me.mnuE_Replace.Text = "&Replace..."
         '
         'mnuE_Go_to
         '
         Me.mnuE_Go_to.Name = "mnuE_Go_to"
         Me.mnuE_Go_to.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.G), System.Windows.Forms.Keys)
-        Me.mnuE_Go_to.Size = New System.Drawing.Size(163, 22)
+        Me.mnuE_Go_to.Size = New System.Drawing.Size(174, 22)
         Me.mnuE_Go_to.Text = "&Go To..."
         '
         'ToolStripMenuItem5
         '
         Me.ToolStripMenuItem5.Name = "ToolStripMenuItem5"
-        Me.ToolStripMenuItem5.Size = New System.Drawing.Size(160, 6)
+        Me.ToolStripMenuItem5.Size = New System.Drawing.Size(171, 6)
         '
         'mnuE_Select_All
         '
         Me.mnuE_Select_All.Name = "mnuE_Select_All"
         Me.mnuE_Select_All.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.A), System.Windows.Forms.Keys)
-        Me.mnuE_Select_All.Size = New System.Drawing.Size(163, 22)
+        Me.mnuE_Select_All.Size = New System.Drawing.Size(174, 22)
         Me.mnuE_Select_All.Text = "Select &All"
         '
         'mnuE_Time_Date
         '
         Me.mnuE_Time_Date.Name = "mnuE_Time_Date"
         Me.mnuE_Time_Date.ShortcutKeys = System.Windows.Forms.Keys.F5
-        Me.mnuE_Time_Date.Size = New System.Drawing.Size(163, 22)
+        Me.mnuE_Time_Date.Size = New System.Drawing.Size(174, 22)
         Me.mnuE_Time_Date.Text = "Time/&Date"
         '
         'mnuFormat
@@ -264,13 +264,13 @@ Partial Class frmNotepad
         '
         Me.mnuFm_Word_Wrap.CheckState = Global.Notepad.My.MySettings.Default.wordwap
         Me.mnuFm_Word_Wrap.Name = "mnuFm_Word_Wrap"
-        Me.mnuFm_Word_Wrap.Size = New System.Drawing.Size(132, 22)
+        Me.mnuFm_Word_Wrap.Size = New System.Drawing.Size(143, 22)
         Me.mnuFm_Word_Wrap.Text = "&Word  Wrap"
         '
         'mnuFm_Font
         '
         Me.mnuFm_Font.Name = "mnuFm_Font"
-        Me.mnuFm_Font.Size = New System.Drawing.Size(132, 22)
+        Me.mnuFm_Font.Size = New System.Drawing.Size(143, 22)
         Me.mnuFm_Font.Text = "&Font..."
         '
         'mnuView
@@ -285,18 +285,18 @@ Partial Class frmNotepad
         Me.mnuV_Status_Bar.Checked = True
         Me.mnuV_Status_Bar.CheckState = Global.Notepad.My.MySettings.Default.statusbar
         Me.mnuV_Status_Bar.Name = "mnuV_Status_Bar"
-        Me.mnuV_Status_Bar.Size = New System.Drawing.Size(152, 22)
+        Me.mnuV_Status_Bar.Size = New System.Drawing.Size(157, 22)
         Me.mnuV_Status_Bar.Text = "&Status Bar"
         '
         'ToolStripMenuItem9
         '
         Me.ToolStripMenuItem9.Name = "ToolStripMenuItem9"
-        Me.ToolStripMenuItem9.Size = New System.Drawing.Size(149, 6)
+        Me.ToolStripMenuItem9.Size = New System.Drawing.Size(154, 6)
         '
         'mnuV_AlwaysOnTop
         '
         Me.mnuV_AlwaysOnTop.Name = "mnuV_AlwaysOnTop"
-        Me.mnuV_AlwaysOnTop.Size = New System.Drawing.Size(152, 22)
+        Me.mnuV_AlwaysOnTop.Size = New System.Drawing.Size(157, 22)
         Me.mnuV_AlwaysOnTop.Text = "Always &On Top"
         '
         'mnuHelp
@@ -309,88 +309,88 @@ Partial Class frmNotepad
         'mnuH_Help_Topics
         '
         Me.mnuH_Help_Topics.Name = "mnuH_Help_Topics"
-        Me.mnuH_Help_Topics.Size = New System.Drawing.Size(147, 22)
+        Me.mnuH_Help_Topics.Size = New System.Drawing.Size(158, 22)
         Me.mnuH_Help_Topics.Text = "&Help Topics"
         '
         'mnuH_About_Notepad
         '
         Me.mnuH_About_Notepad.Name = "mnuH_About_Notepad"
-        Me.mnuH_About_Notepad.Size = New System.Drawing.Size(147, 22)
+        Me.mnuH_About_Notepad.Size = New System.Drawing.Size(158, 22)
         Me.mnuH_About_Notepad.Text = "&About Notepad"
         '
         'mnu_Context
         '
         Me.mnu_Context.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnu_ct_Undo, Me.ToolStripMenuItem6, Me.mnu_ct_Cut, Me.mnu_ct_Copy, Me.mnu_ct_Paste, Me.mnu_ct_Delete, Me.ToolStripMenuItem7, Me.mnu_ct_SelectAll, Me.ToolStripMenuItem8, Me.mnu_ct_Right2Left, Me.mnu_ct_ShowUnicode, Me.mnu_ct_InsertUnicode})
         Me.mnu_Context.Name = "ContextMenuStrip1"
-        Me.mnu_Context.Size = New System.Drawing.Size(232, 220)
+        Me.mnu_Context.Size = New System.Drawing.Size(243, 220)
         '
         'mnu_ct_Undo
         '
         Me.mnu_ct_Undo.Name = "mnu_ct_Undo"
-        Me.mnu_ct_Undo.Size = New System.Drawing.Size(231, 22)
+        Me.mnu_ct_Undo.Size = New System.Drawing.Size(242, 22)
         Me.mnu_ct_Undo.Text = "&Undo"
         '
         'ToolStripMenuItem6
         '
         Me.ToolStripMenuItem6.Name = "ToolStripMenuItem6"
-        Me.ToolStripMenuItem6.Size = New System.Drawing.Size(228, 6)
+        Me.ToolStripMenuItem6.Size = New System.Drawing.Size(239, 6)
         '
         'mnu_ct_Cut
         '
         Me.mnu_ct_Cut.Name = "mnu_ct_Cut"
-        Me.mnu_ct_Cut.Size = New System.Drawing.Size(231, 22)
+        Me.mnu_ct_Cut.Size = New System.Drawing.Size(242, 22)
         Me.mnu_ct_Cut.Text = "Cut"
         '
         'mnu_ct_Copy
         '
         Me.mnu_ct_Copy.Name = "mnu_ct_Copy"
-        Me.mnu_ct_Copy.Size = New System.Drawing.Size(231, 22)
+        Me.mnu_ct_Copy.Size = New System.Drawing.Size(242, 22)
         Me.mnu_ct_Copy.Text = "Copy"
         '
         'mnu_ct_Paste
         '
         Me.mnu_ct_Paste.Name = "mnu_ct_Paste"
-        Me.mnu_ct_Paste.Size = New System.Drawing.Size(231, 22)
+        Me.mnu_ct_Paste.Size = New System.Drawing.Size(242, 22)
         Me.mnu_ct_Paste.Text = "Paste"
         '
         'mnu_ct_Delete
         '
         Me.mnu_ct_Delete.Name = "mnu_ct_Delete"
-        Me.mnu_ct_Delete.Size = New System.Drawing.Size(231, 22)
+        Me.mnu_ct_Delete.Size = New System.Drawing.Size(242, 22)
         Me.mnu_ct_Delete.Text = "Delete"
         '
         'ToolStripMenuItem7
         '
         Me.ToolStripMenuItem7.Name = "ToolStripMenuItem7"
-        Me.ToolStripMenuItem7.Size = New System.Drawing.Size(228, 6)
+        Me.ToolStripMenuItem7.Size = New System.Drawing.Size(239, 6)
         '
         'mnu_ct_SelectAll
         '
         Me.mnu_ct_SelectAll.Name = "mnu_ct_SelectAll"
-        Me.mnu_ct_SelectAll.Size = New System.Drawing.Size(231, 22)
+        Me.mnu_ct_SelectAll.Size = New System.Drawing.Size(242, 22)
         Me.mnu_ct_SelectAll.Text = "Select All"
         '
         'ToolStripMenuItem8
         '
         Me.ToolStripMenuItem8.Name = "ToolStripMenuItem8"
-        Me.ToolStripMenuItem8.Size = New System.Drawing.Size(228, 6)
+        Me.ToolStripMenuItem8.Size = New System.Drawing.Size(239, 6)
         '
         'mnu_ct_Right2Left
         '
         Me.mnu_ct_Right2Left.Name = "mnu_ct_Right2Left"
-        Me.mnu_ct_Right2Left.Size = New System.Drawing.Size(231, 22)
+        Me.mnu_ct_Right2Left.Size = New System.Drawing.Size(242, 22)
         Me.mnu_ct_Right2Left.Text = "Right to left Reading order"
         '
         'mnu_ct_ShowUnicode
         '
         Me.mnu_ct_ShowUnicode.Name = "mnu_ct_ShowUnicode"
-        Me.mnu_ct_ShowUnicode.Size = New System.Drawing.Size(231, 22)
+        Me.mnu_ct_ShowUnicode.Size = New System.Drawing.Size(242, 22)
         Me.mnu_ct_ShowUnicode.Text = "Show Unicode control characters"
         '
         'mnu_ct_InsertUnicode
         '
         Me.mnu_ct_InsertUnicode.Name = "mnu_ct_InsertUnicode"
-        Me.mnu_ct_InsertUnicode.Size = New System.Drawing.Size(231, 22)
+        Me.mnu_ct_InsertUnicode.Size = New System.Drawing.Size(242, 22)
         Me.mnu_ct_InsertUnicode.Text = "Insert Unicode control character"
         '
         'statusbar
@@ -460,13 +460,13 @@ Partial Class frmNotepad
         Me.DataBindings.Add(New System.Windows.Forms.Binding("Location", Global.Notepad.My.MySettings.Default, "Location", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
         Me.DataBindings.Add(New System.Windows.Forms.Binding("TopMost", Global.Notepad.My.MySettings.Default, "TopMost", True, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged))
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.KeyPreview = True
         Me.Location = Global.Notepad.My.MySettings.Default.Location
         Me.MainMenuStrip = Me.mainMenu
         Me.Name = "frmNotepad"
         Me.Opacity = 0.01
         Me.StartPosition = System.Windows.Forms.FormStartPosition.Manual
         Me.Text = "Untitled - Notepad"
-        Me.TopMost = Global.Notepad.My.MySettings.Default.TopMost
         Me.mainMenu.ResumeLayout(False)
         Me.mainMenu.PerformLayout()
         Me.mnu_Context.ResumeLayout(False)
