@@ -1,0 +1,1 @@
+Project đồ án môn quản lý cấu hình phần mềm của nhóm KLMNT (Đồng Nhật Kha, Cao Lê Hồng Lĩnh, Đoàn Thị Huỳnh Mai, Lê Thị Ngà & Nguyễn Thị Kim Trúc)
